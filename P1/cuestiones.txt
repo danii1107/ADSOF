@@ -1,0 +1,75 @@
+Ejercicio 3:
+
+❯ java LongitudPalabras
+Se espera al menos una palabra como parametro.
+
+Vemos que al ejecutar sin parametros el programa nos indica la forma de ejecutarlo.
+
+❯ java LongitudPalabras palabra
+Las longitudes de las palabras son: 
+- palabra (7 caracteres).
+
+Palabras almacenadas: [palabra]
+Longitud de 'No_almacenada': -1
+
+❯ java LongitudPalabras palabra apalabrados
+Las longitudes de las palabras son: 
+- palabra (7 caracteres).
+- apalabrados (11 caracteres).
+
+Palabras almacenadas: [palabra, apalabrados]
+Longitud de 'No_almacenada': -1
+
+❯ java LongitudPalabras palabra apalabrados pala
+Las longitudes de las palabras son: 
+- palabra (7 caracteres).
+- apalabrados (11 caracteres).
+- pala (4 caracteres).
+
+Palabras almacenadas: [palabra, apalabrados, pala]
+Longitud de 'No_almacenada': -1
+
+Vemos que si ejecutamos con 1 o más parámetros el programa almacena las palabras recibidas para posteriormente 
+mostrar sus respectivas longitudes y printear el set de todas estas.
+
+❯ java LongitudPalabras 12345
+Las longitudes de las palabras son: 
+- 12345 (5 caracteres).
+
+Palabras almacenadas: [12345]
+Longitud de 'No_almacenada': -1
+
+❯ java LongitudPalabras \\~\~3232
+Las longitudes de las palabras son: 
+- \~~3232 (7 caracteres).
+
+Palabras almacenadas: [\~~3232]
+Longitud de 'No_almacenada': -1
+
+❯ java LongitudPalabras
+Se espera al menos una palabra como parametro.
+
+Con números o caracteres especiales también funciona, sin embargo,
+al introducir solo espacios no detecta el parámetro introducido.
+
+Con la lógica del programa es imposible que la longitud no almacenada 
+sea distinta de -1, si hay al menos un parámetro.
+
+
+Ejercicio 4
+
+Con la clase dada 'FrecuenciaPalabras' hemos implementado los métodos necesarios para su correcto funcionamiento: 'getLongitudesUnicas'
+y 'getFrecuencia'.
+
+Para el primer método mencionado hemos usado un HashSet porque no permite almacenar elementos repetidos, de esta forma, tras recorrer e insertar cada
+valor del mapa que almacena las longitudes, solo almaceenaremos las longitudes únicas. 
+
+Por otro lado, el segundo método realiza casi lo mismo que el primero sin insertar los valores en un HashSet sino que, compara el parámetro recibido
+con cada valor del mapa, si estos son iguales, aumenta la frecuencia que posteriormente será retornada.
+
+Inconvenientes: Hay formas más sencillas de implementar el primer método, el segundo método podría ser más eficiente.
+Ventajas: El primer método es bastante eficiente y el segundo es muy fácil de implementar y comprender.
+
+Lo más sencillo para implementar getLongitudesRepetidas es insertar las frecuencias de cada longitud en un conjunto de datos, podemos ayudarnos del método getFrecuencia
+para esto, después comprobaremos que frecuencias son superiores a 1 para insertarlas en un set de enteros que posteriormente será
+retornado y nos encargaremos desde el main a imprimir el set tal y como se nos pide. 
