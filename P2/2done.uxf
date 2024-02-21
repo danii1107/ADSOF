@@ -1,0 +1,103 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>70</y><w>210</w><h>70</h></coordinates><panel_attributes>TarjetaCredito
+--
+-id: long
+-codigo: long
+-fechaCaducidad: Date
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>50</y><w>210</w><h>110</h></coordinates><panel_attributes>/Usuario/
+--
+-id: long
+-nombre: String
+-usuario: String
+-contraseña: String
+-tarjetas: Array</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>320</y><w>210</w><h>90</h></coordinates><panel_attributes>Escritor
+--
+-nif: int
+-comision: double
+-pseudonimo: String
+-libros: Array</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>320</y><w>210</w><h>70</h></coordinates><panel_attributes>Lector
+--
+-plan: enum
+-compras: Array
+-puntos: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>150</y><w>30</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;170</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>150</y><w>30</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>60</y><w>300</w><h>130</h></coordinates><panel_attributes>Plataforma
+--
+-usuarios: Array
+-libros: Array
+-actos: Array
+--
++login(usuario: String, contraseña: String) : Boolean
++adeudoLector(lector: Lector) : double
++comprasLibrosSagas(lector: Lector) : Array[Datos]
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>140</y><w>290</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
+*                                                                     1</panel_attributes><additional_attributes>270;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>460</y><w>210</w><h>40</h></coordinates><panel_attributes>Libro
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>180</y><w>40</w><h>300</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+  1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  *</panel_attributes><additional_attributes>10;10;10;280</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1200</x><y>590</y><w>210</w><h>90</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Genero
+--
+-Novela narrativa
+-Ensayo
+-Novela gráfica</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1090</x><y>610</y><w>130</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>540</y><w>210</w><h>90</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Plan
+--
+-Básico
+-Estándar
+-Premio</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>380</y><w>30</w><h>180</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;160;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>890</x><y>550</y><w>210</w><h>290</h></coordinates><panel_attributes>/Datos/
+--
+-id: long
+-titulo: String
+-precio: double
+-genero: enum
+-año: int
+-autores: Array
+-premios: String
+-extensión: int
+-puntos: int
+-valoracion: double
+--
++getPrecio() : double
++getAño() : int
++getGeneros() : Array[Genero]
++getAutores() : Array[Autores]
++getPremios() : String
++getPaginas() : int
++getPuntos() : int
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>370</y><w>210</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+1..n                        1..n</panel_attributes><additional_attributes>10;20;190;20;190;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>630</y><w>210</w><h>40</h></coordinates><panel_attributes>Saga
+--
+-libros: Array
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>490</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>640</y><w>80</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>820</x><y>490</y><w>40</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+*
+
+
+
+
+1</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>380</y><w>560</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+**</panel_attributes><additional_attributes>10;10;10;110;540;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>950</x><y>270</y><w>210</w><h>110</h></coordinates><panel_attributes>Actos
+--
+-fecha: Date
+-precio: double
+-descuento: double
+-descripción: String
+-autor: Autor</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>980</x><y>180</y><w>40</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+1
+
+
+*</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>330</y><w>330</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;310;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>90</y><w>130</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+1..n               1 </panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element></diagram>
