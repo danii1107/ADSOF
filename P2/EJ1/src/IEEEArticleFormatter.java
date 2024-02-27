@@ -1,11 +1,24 @@
+/**
+*
+* @author Daniel Birsan daniel.birsan@estudiante.uam.es
+* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
+*
+*/
 import java.util.List;
 
 public class IEEEArticleFormatter extends ArticleFormatter{
-    
+    /**
+	* 	Constructor para `IEEErticleFormatter`. Establece el formato de artículo a "IEEE".
+	*/
     public IEEEArticleFormatter(){
 		super("IEEE");
 	}
 
+	/**
+	* Formatea la lista de autores según las normas IEEE.
+	* @param authors Lista de autores a formatear.
+	* @return String con los autores formateados según IEEE.
+	*/
     @Override
 	public String formatAuthorsList(List<Author> authors) {
 		StringBuffer sb = new StringBuffer();
@@ -16,6 +29,11 @@ public class IEEEArticleFormatter extends ArticleFormatter{
 		return sb.toString();
 	}
 	
+	/**
+	* Formatea la referencia de un artículo según las normas IEEE.
+	* @param a Artículo a formatear su referencia.
+	* @return String con la referencia del artículo formateada según IEEE.
+	*/
 	@Override
 	public String formatReference(Article a) {
 		return formatAuthorsList(a.getAuthors()) + "\"" + a.getTitle() + "\"" +

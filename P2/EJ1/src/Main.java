@@ -1,3 +1,10 @@
+/**
+* Esta aplicación calcula las longitudes de los parámetros
+*
+* @author Daniel Birsan daniel.birsan@estudiante.uam.es
+* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
+*
+*/
 import java.util.List;
 
 public class Main {

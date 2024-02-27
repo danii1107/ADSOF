@@ -1,3 +1,9 @@
+/**
+*
+* @author Daniel Birsan daniel.birsan@estudiante.uam.es
+* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
+*
+*/
 import java.util.List;
 
 public class Article{
@@ -5,6 +11,15 @@ public class Article{
 	private int year, volume, issue;
 	private String title, journal;
 
+	/**
+	* Constructor para `Article`. Inicializa un artículo con sus detalles básicos.
+	* @param authors Lista de autores del artículo.
+	* @param year Año de publicación del artículo.
+	* @param title Título del artículo.
+	* @param journal Nombre del journal donde se publica el artículo.
+	* @param vol Volumen del journal donde se publica el artículo.
+	* @param issue Número de edición del journal donde se publica el artículo.
+	*/
 	public Article(List<Author> authors, int year, String title, String journal, 
 			       int vol, int issue) {
 		this.authors = authors;
