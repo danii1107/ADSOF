@@ -1,0 +1,11 @@
+public double adeudoLector(Lector lector) {
+	double adeudo = lector.getPrecioPlan();
+	double dtoPlan = 1.0;
+	if (adeudo == 9.9)
+		dtoPlan = 0.5;
+	for (Libro libro : lector.getLibrosComprados()) {
+		adeudo += dtoPlan * libro.getPrecio();
+	}
+	adeudo += lector.getPrecioActo();
+	return adeudo;
+}
