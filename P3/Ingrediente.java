@@ -1,7 +1,7 @@
 public class Ingrediente {
 	private String nombre;
-	private TipoIngrediente tipo;
-	private String tipo2;
+	private TipoIngrediente tipo = null;
+	private String tipo2 = null;
 	private InfoNutricional info;
     private String tabla;
 
@@ -32,9 +32,28 @@ public class Ingrediente {
 	public InfoNutricional getInfo() {
 		return info;
 	}
+
+	public String mostrarInfoFichero() {
+		return this.info.getInfoFichero();
+	}
 	
 	public String getTabla() {
 		return tabla;
+	}
+
+	public String alergenosFichero(String alergenosInput) {
+		StringBuilder alergenosBuilder = new StringBuilder();
+		for (Alergeno alg : Alergeno.values()) {
+			if (alergenosInput != null && alergenosInput.contains(alg.toString())) {
+				alergenosBuilder.append("S;");
+			} else {
+				alergenosBuilder.append("N;");
+			}
+		}
+		if (alergenosBuilder.length() > 0) {
+			alergenosBuilder.setLength(alergenosBuilder.length() - 1);
+		}
+		return alergenosBuilder.toString();
 	}
 
 	public Ingrediente tieneAlergenos(Alergeno... alergenos) {

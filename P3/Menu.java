@@ -19,6 +19,10 @@ public class Menu {
 		this.alergenosUnicos = new HashSet<>();
 	}
 
+	public List<Plato> getPlatos() {
+		return this.platos;
+	}
+
 	public List<Double> getInfoNutricional() {
 		List<Double> infoNutricionalTotal = new ArrayList<>(Collections.nCopies(8, 0.0));
 
@@ -45,6 +49,17 @@ public class Menu {
 		}
 		return platos;
 	}
+
+	public String mostrarPlatosFichero() {
+		String platos = "";
+		for (int i = 0; i < this.platos.size(); i++) {
+			platos += this.platos.get(i).getNombre(); 
+			if (i < this.platos.size() - 1) 
+				platos += ";";
+		}
+		return platos;
+	}
+
 
 	public String mostrarInfo() {
 		List<Double> infoNutricional = this.getInfoNutricional();

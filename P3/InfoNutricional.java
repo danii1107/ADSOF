@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public abstract class InfoNutricional {
 	private double calorias;
@@ -99,6 +100,20 @@ public abstract class InfoNutricional {
 		nutrientes.add(getFibra());
 		nutrientes.add(getSodio());
 		return nutrientes;
+	}
+
+	
+	public String getInfoFichero() {
+		String info = String.format(Locale.US, "%.1f;%.1f;%.1f;%.1f;%.1f;%.1f;%.1f;%.1f;", 
+			this.getCalorias(), 
+			this.getCarbohidratos(), 
+			this.getGrasasTotales(),
+			this.getGrasasSaturadas(), 
+			this.getProteinas(), 
+			this.getAzucares(), 
+			this.getFibra(), 
+			this.getSodio());
+		return info;
 	}
 
 	public String mostrarInfo(double calorias, double carbohidratos, double grasasTotales, double grasasSaturadas, double proteinas, 

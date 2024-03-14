@@ -39,6 +39,14 @@ public class Plato {
 		return false;
 	}
 
+	public Map<Ingrediente, Integer> getIngredientes() {
+		return this.ingredientes;
+	}
+
+	public Map<Plato, Integer> getPlatos() {
+		return this.platos;
+	}
+
 	public List<Double> getInfoNutricional() {
 		List<Double> infoNutricionalTotal = new ArrayList<>(Collections.nCopies(8, 0.0));
 	
