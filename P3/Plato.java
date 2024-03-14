@@ -87,14 +87,19 @@ public class Plato {
 		return alergenos.toString().toLowerCase();
 	}
 
-
-	public String toString() {
+	public String mostrarInfo() {
 		List<Double> infoNutricional = this.getInfoNutricional();
-		String alergenos = getAlergenos();
-		return "[Plato] " + this.nombre + ": INFORMACION NUTRICIONAL DEL PLATO -> Valor energetico: " + String.format("%.2f", infoNutricional.get(0)) + 
+		String info = "";
+		info += "Valor energetico: " + String.format("%.2f", infoNutricional.get(0)) + 
 			" kcal, Hidratos de Carbono: " + String.format("%.2f", infoNutricional.get(1)) + " g, Grasas: " + String.format("%.2f", infoNutricional.get(2)) +
 			" g, Saturadas: " + String.format("%.2f", infoNutricional.get(3)) + " g, Proteinas: " + String.format("%.2f", infoNutricional.get(4)) + " g, Azucares: " +
 			String.format("%.2f", infoNutricional.get(5)) + " g, Fibra: " + String.format("%.2f", infoNutricional.get(6)) + " g, Sodio: " + 
-			String.format("%.2f", infoNutricional.get(7)) + " mg." + (alergenosUnicos.isEmpty() ? "" : String.format(" CONTIENE %s", alergenos));
+			String.format("%.2f", infoNutricional.get(7)) + " mg.";
+		return info;
+	
+	}
+	public String toString() {
+		String alergenos = getAlergenos();
+		return "[Plato] " + this.nombre + ": INFORMACION NUTRICIONAL DEL PLATO -> " + this.mostrarInfo() + (alergenosUnicos.isEmpty() ? "" : String.format(" CONTIENE %s", alergenos));
 	}
 }

@@ -7,13 +7,16 @@ import java.util.Set;
 public class Menu {
 	private List<Plato> platos;
 	private Set<String> alergenosUnicos;
+	private static Integer nextId = 1;
+	private Integer id = 0;
 
 	public Menu(Plato... platos) {
 		this.platos = new ArrayList<>();
 		for (Plato plato : platos) {
 			this.platos.add(plato);
 		}
-		this.alergenosUnicos = new HashSet<>(); 
+		this.id = nextId++;
+		this.alergenosUnicos = new HashSet<>();
 	}
 
 	public List<Double> getInfoNutricional() {
@@ -63,6 +66,6 @@ public class Menu {
 	}
 
 	public String toString() {
-		return "[" + this.mostrarPlatos() + "]: INFORMACION NUTRICIONAL DEL MENU -> " + this.mostrarInfo() + this.mostrarAlergenos();
+		return String.format("Menu %d [", this.id) + this.mostrarPlatos() + "]: INFORMACION NUTRICIONAL DEL MENU -> " + this.mostrarInfo() + this.mostrarAlergenos();
 	}
 }
