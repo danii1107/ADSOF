@@ -18,6 +18,10 @@ public class Plato {
 		this.platos = new HashMap<>();
 		this.alergenosUnicos = new HashSet<>();
 	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
 	
 	public boolean addIngrediente(Ingrediente ingrediente, int cantidad) {
 		if (this.ingredientes.containsKey(ingrediente)) {
@@ -73,15 +77,24 @@ public class Plato {
 		return infoNutricionalTotal;
 	}
 
+	public Set<String> getAlergenosUnicos() {
+		return this.alergenosUnicos;
+	}
+
+	public String getAlergenos() {
+		StringBuilder alergenos = new StringBuilder();
+		alergenos.append(String.join(", ", alergenosUnicos));
+		return alergenos.toString().toLowerCase();
+	}
+
 
 	public String toString() {
 		List<Double> infoNutricional = this.getInfoNutricional();
-		StringBuilder alergenos = new StringBuilder();
-		alergenos.append(String.join(", ", alergenosUnicos));
+		String alergenos = getAlergenos();
 		return "[Plato] " + this.nombre + ": INFORMACION NUTRICIONAL DEL PLATO -> Valor energetico: " + String.format("%.2f", infoNutricional.get(0)) + 
 			" kcal, Hidratos de Carbono: " + String.format("%.2f", infoNutricional.get(1)) + " g, Grasas: " + String.format("%.2f", infoNutricional.get(2)) +
 			" g, Saturadas: " + String.format("%.2f", infoNutricional.get(3)) + " g, Proteinas: " + String.format("%.2f", infoNutricional.get(4)) + " g, Azucares: " +
 			String.format("%.2f", infoNutricional.get(5)) + " g, Fibra: " + String.format("%.2f", infoNutricional.get(6)) + " g, Sodio: " + 
-			String.format("%.2f", infoNutricional.get(7)) + " mg." + (alergenosUnicos.isEmpty() ? "" : String.format(" CONTIENE %s", alergenos.toString().toLowerCase()));
+			String.format("%.2f", infoNutricional.get(7)) + " mg." + (alergenosUnicos.isEmpty() ? "" : String.format(" CONTIENE %s", alergenos));
 	}
 }
