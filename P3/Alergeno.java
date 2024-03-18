@@ -1,6 +1,6 @@
 public enum Alergeno {
 	GLUTEN,
 	LACTOSA,
-	HUEVO,
-	FRUTOS_SECOS
+	FRUTOS_SECOS,
+	HUEVO
 }

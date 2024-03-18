@@ -1,3 +1,7 @@
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Ingrediente {
 	private String nombre;
 	private TipoIngrediente tipo = null;
@@ -21,12 +25,24 @@ public class Ingrediente {
 		return nombre;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public TipoIngrediente getTipo() {
 		return tipo;
 	}
 
+	public void setTipo(TipoIngrediente tipo) {
+		this.tipo = tipo;
+	}
+
     public String getTipo2() {
 		return tipo2;
+	}
+
+	public void setTipo2(String tipo) {
+		this.tipo2 = tipo;
 	}
 
 	public InfoNutricional getInfo() {
@@ -39,6 +55,15 @@ public class Ingrediente {
 	
 	public String getTabla() {
 		return tabla;
+	}
+
+	public Set<String> getAlergenos() {
+		Set<String> alergenosSet = new HashSet<>();
+		if (tabla != null && !tabla.isEmpty()) {
+			String[] alergenos = tabla.split(", ");
+			Collections.addAll(alergenosSet, alergenos);
+		}
+		return alergenosSet;
 	}
 
 	public String alergenosFichero(String alergenosInput) {

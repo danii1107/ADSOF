@@ -118,9 +118,9 @@ public abstract class InfoNutricional {
 
 	public String mostrarInfo(double calorias, double carbohidratos, double grasasTotales, double grasasSaturadas, double proteinas, 
 								double azucares, double fibra, double sodio) {
-		return "Valor energetico: " + String.format("%.2f", calorias) + " kcal, Hidratos de Carbono: " + String.format("%.2f", carbohidratos) + " g, Grasas: " + 
-			String.format("%.2f", grasasTotales) + " g, Saturadas: " + String.format("%.2f", grasasSaturadas) + " g, Proteinas: " + String.format("%.2f", proteinas) + 
-			" g, Azucares: " + String.format("%.2f", azucares) + " g, Fibra: " + String.format("%.2f", fibra) + " g, Sodio: " + String.format("%.2f", sodio) + " mg.";
+		return "Valor energetico: " + String.format(Locale.US, "%.2f", calorias) + " kcal, Hidratos de Carbono: " + String.format(Locale.US, "%.2f", carbohidratos) + " g, Grasas: " + 
+			String.format(Locale.US, "%.2f", grasasTotales) + " g, Saturadas: " + String.format(Locale.US, "%.2f", grasasSaturadas) + " g, Proteinas: " + String.format(Locale.US, "%.2f", proteinas) + 
+			" g, Azucares: " + String.format(Locale.US, "%.2f", azucares) + " g, Fibra: " + String.format(Locale.US, "%.2f", fibra) + " g, Sodio: " + String.format(Locale.US, "%.2f", sodio) + " mg.";
 	}
 
 	public String toString(){

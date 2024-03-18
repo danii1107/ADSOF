@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class Menu {
@@ -21,6 +22,14 @@ public class Menu {
 
 	public List<Plato> getPlatos() {
 		return this.platos;
+	}
+
+	public void setPlatos(List<Plato> platos) {
+		this.platos = platos;
+	}
+
+	public void setAlergenosUnicos(Set<String> alergenosUnicos) {
+		this.alergenosUnicos = alergenosUnicos;
 	}
 
 	public List<Double> getInfoNutricional() {
@@ -62,15 +71,15 @@ public class Menu {
 
 
 	public String mostrarInfo() {
-		List<Double> infoNutricional = this.getInfoNutricional();
-		String info = "";
-		info += "Valor energetico: " + String.format("%.2f", infoNutricional.get(0)) + 
-			" kcal, Hidratos de Carbono: " + String.format("%.2f", infoNutricional.get(1)) + " g, Grasas: " + String.format("%.2f", infoNutricional.get(2)) +
-			" g, Saturadas: " + String.format("%.2f", infoNutricional.get(3)) + " g, Proteinas: " + String.format("%.2f", infoNutricional.get(4)) + " g, Azucares: " +
-			String.format("%.2f", infoNutricional.get(5)) + " g, Fibra: " + String.format("%.2f", infoNutricional.get(6)) + " g, Sodio: " + 
-			String.format("%.2f", infoNutricional.get(7)) + " mg.";
-		return info;
-	}
+        List<Double> infoNutricional = this.getInfoNutricional();
+        String info = "";
+        info += "Valor energetico: " + String.format(Locale.US, "%.2f", infoNutricional.get(0)) + 
+            " kcal, Hidratos de Carbono: " + String.format(Locale.US, "%.2f", infoNutricional.get(1)) + " g, Grasas: " + String.format(Locale.US, "%.2f", infoNutricional.get(2)) +
+            " g, Saturadas: " + String.format(Locale.US, "%.2f", infoNutricional.get(3)) + " g, Proteinas: " + String.format(Locale.US, "%.2f", infoNutricional.get(4)) + " g, Azucares: " +
+            String.format(Locale.US, "%.2f", infoNutricional.get(5)) + " g, Fibra: " + String.format(Locale.US, "%.2f", infoNutricional.get(6)) + " g, Sodio: " + 
+            String.format(Locale.US, "%.2f", infoNutricional.get(7)) + " mg.";
+        return info;
+    }
 
 	public String mostrarAlergenos() {
 		String alergenos = "";

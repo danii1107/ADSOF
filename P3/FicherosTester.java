@@ -5,9 +5,9 @@ public class FicherosTester extends MenusTester {
 		FicherosTester tester = new FicherosTester();
 		List<Menu> menus = tester.crearMenus();
 		ManejadorFicheros.guardarFichero("comida.txt", menus);
-		/* ManejadorFicheros.leerFichero("comida.txt");
+		ManejadorFicheros.leerFichero("comida.txt");
 		for (Menu menu : ManejadorFicheros.getMenus()) {
 			System.out.println("* " + menu);
-		} */
+		}
 	}
 }
