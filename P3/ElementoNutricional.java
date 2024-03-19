@@ -1,0 +1,10 @@
+public enum ElementoNutricional {
+	CALORIAS,
+	CARBOHIDRATOS,
+	GRASA_TOTAL,
+	GRASA_SATURADA,
+	PROTEINA,
+	AZUCARES,
+	FIBRA,
+	SODIO
+}
