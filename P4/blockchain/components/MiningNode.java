@@ -1,3 +1,6 @@
+package blockchain.components;
+import blockchain.wallets.Wallet;
+
 public class MiningNode extends Node {
 	private long computationalCapacity;
 	private String name;

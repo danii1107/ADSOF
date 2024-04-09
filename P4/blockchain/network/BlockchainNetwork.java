@@ -1,4 +1,8 @@
+package blockchain.network;
 import java.util.List;
+
+import blockchain.components.Connectable;
+
 import java.util.ArrayList;
 
 public class BlockchainNetwork {

@@ -1,3 +1,4 @@
+package blockchain.wallets;
 public class Transaction {
 	private String id;
 	private Wallet sender;

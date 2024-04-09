@@ -1,7 +1,7 @@
 package blockchain.utils;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+/* import java.nio.ByteBuffer;
+import java.nio.ByteOrder; */
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

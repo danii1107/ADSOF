@@ -1,5 +1,9 @@
+package blockchain.components;
 import java.util.ArrayList;
 import java.util.List;
+
+import blockchain.wallets.Transaction;
+import blockchain.wallets.Wallet;
 
 public class Node implements Connectable {
 	private static int nextId = 0;
