@@ -1,12 +1,12 @@
-package blockchain.tests;
+package src.tests;
 
-import blockchain.components.MiningNode;
-import blockchain.components.Node;
-import blockchain.components.Subnet;
-import blockchain.network.BlockchainNetwork;
-import blockchain.utils.*;
-import blockchain.wallets.Transaction;
-import blockchain.wallets.Wallet;
+import src.blockchain.components.MiningNode;
+import src.blockchain.components.Node;
+import src.blockchain.components.Subnet;
+import src.blockchain.network.BlockchainNetwork;
+import src.blockchain.utils.*;
+import src.blockchain.wallets.Transaction;
+import src.blockchain.wallets.Wallet;
 
 public class TesterMainExercise1 {
 	protected Wallet wallet1, wallet2, wallet3;
