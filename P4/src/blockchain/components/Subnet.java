@@ -7,6 +7,7 @@ import java.util.Set;
 import src.blockchain.interfaces.IConnectable;
 import src.blockchain.interfaces.IMessage;
 import src.blockchain.network.BlockchainNetwork;
+import src.blockchain.notifications.TransactionNotification;
 
 public class Subnet extends AbstractConnectable {
 	private static Set<Subnet> subnets = new HashSet<>();
@@ -43,7 +44,10 @@ public class Subnet extends AbstractConnectable {
 	}
 
 	public void broadcast(IMessage message) {
-		System.out.println("[" + fullName() + "] " + message.toString());
+		if (message instanceof TransactionNotification)
+			System.out.println("[" + fullName() + "] " + message.toString());
+		else
+			System.out.println("[" + fullName() + "] " + message.toString().split(":")[0]);
 		System.out.println("Broadcasting to " + this.nodes.size() + " nodes:");
 		this.nodes.forEach(node -> node.broadcast(message));
 	}

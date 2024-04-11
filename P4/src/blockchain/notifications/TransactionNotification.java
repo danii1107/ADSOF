@@ -1,6 +1,7 @@
-package src.blockchain.wallets;
+package src.blockchain.notifications;
 
 import src.blockchain.interfaces.IMessage;
+import src.blockchain.wallets.Transaction;
 
 public class TransactionNotification implements IMessage {
 	private Transaction transaction;

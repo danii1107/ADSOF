@@ -1,9 +1,9 @@
 package src.tests;
 
 import src.blockchain.wallets.Transaction;
-import src.blockchain.wallets.TransactionNotification;
 import src.blockchain.exceptions.connection.*;
 import src.blockchain.exceptions.transaction.TransactionException;
+import src.blockchain.notifications.TransactionNotification;
 
 public class TesterMainExercise2 extends TesterMainExercise1 {
 	public void buildFaultyNetwork() {

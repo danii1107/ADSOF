@@ -69,10 +69,6 @@ public class BlockchainNetwork implements IConnectable {
 		return null;
 	}
 
-	public String exceptionName() {
-		return null;
-	}
-
 	@Override
     public String toString() {
         StringBuilder sb = new StringBuilder(name + " consists of " + elements.size() + " elements:\n");

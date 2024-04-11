@@ -2,7 +2,7 @@ package src.blockchain.exceptions.transaction;
 
 import src.blockchain.wallets.Wallet;
 
-public class TransactionException extends Exception {
+public class TransactionException extends RuntimeException {
 	private Wallet wallet;
 	private Wallet receiver;
 	private int amount;
