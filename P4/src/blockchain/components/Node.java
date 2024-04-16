@@ -14,6 +14,10 @@ import src.blockchain.notifications.ValidateBlockRq;
 import src.blockchain.notifications.ValidateBlockRes;
 import src.blockchain.wallets.Wallet;
 
+/**
+ * Represents a node in the blockchain network.
+ * A node is a participant in the network that can create and broadcast transactions.
+ */
 public class Node extends AbstractConnectable {
 	private String name;
 	private int id;
@@ -21,6 +25,11 @@ public class Node extends AbstractConnectable {
 	private List<Transaction> transactions = new ArrayList<>();
 	private static String pendingTransaction;
 
+	/**
+	 * Constructs a new Node object with the specified wallet.
+	 *
+	 * @param wallet the wallet associated with the node
+	 */
 	public Node(Wallet wallet) {
 		this.id = BlockchainNetwork.generateId();
 		if (this.id < 10) {
@@ -33,15 +42,33 @@ public class Node extends AbstractConnectable {
 		this.wallet = wallet;
 	}
 
+	/**
+	 * Gets the wallet associated with the node.
+	 *
+	 * @return the wallet associated with the node
+	 */
 	public Wallet getWallet() {
 		return this.wallet;
 	}
-	
+
+	/**
+	 * Returns the full name of the node.
+	 *
+	 * @return the full name of the node
+	 */
 	@Override
 	public String fullName() {
 		return this.name;
 	}
 
+	/**
+	 * Creates a new transaction from the node's wallet to the specified receiver with the given amount.
+	 *
+	 * @param receiver the wallet of the receiver
+	 * @param amount   the amount to be transferred
+	 * @return the created transaction
+	 * @throws TransactionException if the amount is negative
+	 */
 	public Transaction createTransaction(Wallet receiver, int amount) {
 		if (amount < 0)
 			throw new TransactionException(this.wallet, receiver, amount);
@@ -49,10 +76,22 @@ public class Node extends AbstractConnectable {
 		return tr;
 	}
 
+	/**
+	 * Creates a new transaction from the node's wallet to the receiver with the given public key and amount.
+	 *
+	 * @param wallet_pk the public key of the receiver's wallet
+	 * @param amount    the amount to be transferred
+	 * @return the created transaction
+	 */
 	public Transaction createTransaction(String wallet_pk, int amount) {
 		return this.createTransaction(Wallet.getWalletByKey(wallet_pk), amount);
 	}
 
+	/**
+	 * Broadcasts the given message to the network.
+	 *
+	 * @param message the message to be broadcasted
+	 */
 	public void broadcast(IMessage message) {
 		if (message instanceof TransactionNotification) {
 			pendingTransaction = message.getMessage();
@@ -88,6 +127,11 @@ public class Node extends AbstractConnectable {
 		}
 	}
 
+	/**
+	 * Gets the parent of the node in the network hierarchy.
+	 *
+	 * @return the parent of the node, or null if the node is not connected to any network or subnet
+	 */
 	public IConnectable getParent() {
 		Set<BlockchainNetwork> networks = BlockchainNetwork.getNetworks();
 		for (BlockchainNetwork network : networks) {
@@ -104,6 +148,11 @@ public class Node extends AbstractConnectable {
 		return null;
 	}
 
+	/**
+	 * Returns a string representation of the node.
+	 *
+	 * @return a string representation of the node
+	 */
 	@Override
 	public String toString() {
 		return "u: " + wallet.getName() + ", PK:" + wallet.getPublicKey() + ", balance: " + wallet.getBalance() + " | @" + fullName();
