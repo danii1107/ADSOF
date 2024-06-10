@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"src.comida"},{"l":"src.comparador"},{"l":"src.informacion"},{"l":"src.manejador"},{"l":"src.menus"},{"l":"src.testers"},{"l":"src.unittests"}]
