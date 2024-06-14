@@ -6,7 +6,6 @@
 package src.menus;
 
 import src.comida.*;
-import src.informacion.InfoNutricionalMenu;
 
 import java.util.*;
 
@@ -25,7 +24,7 @@ public class Menu extends Comida {
 		this.id = ++nextId;
 		Arrays.asList(platos).forEach(p -> this.platos.add(p));
 		Arrays.asList(platos).forEach(p -> this.addAlergenos(p.getAlergenos()));
-		((InfoNutricionalMenu) this.getInfoNutricional()).calcularInfoNutricional(platos);
+		this.getInfoNutricional().calcularInfoNutricional(platos);
 	}
 
 	public List<Plato> getPlatos() {
@@ -80,9 +79,19 @@ public class Menu extends Comida {
 		
 		Arrays.asList(platosDelMenu).forEach(p -> this.platos.add(p));
 		Arrays.asList(platosDelMenu).forEach(p -> this.addAlergenos(p.getAlergenos()));
-		((InfoNutricionalMenu) this.getInfoNutricional()).calcularInfoNutricional(platosDelMenu);
+		this.getInfoNutricional().calcularInfoNutricional(platosDelMenu);
         return this;
     }
+
+	/**
+	 * Implementación por defecto por herencia
+	 * @param linea Cadena que contiene la información necesaria para la instancai
+	 * @return Instancia del ingrediente
+	 */
+	@Override
+	public Comida setInfoFichero(String linea) {
+		return null;
+	}
 
 	@Override
 	public String toString() {

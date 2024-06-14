@@ -136,6 +136,17 @@ public class Ingrediente extends Comida {
 		return this;
 	}
 
+	/**
+	 * Implementación por defecto por herencia
+	 * @param linea Cadena que contiene la información necesaria para la instancai
+	 * @param comida Mapa con la comida ya instanciada
+	 * @return Instancia del ingrediente
+	 */
+	@Override
+	public Comida setInfoFichero(String linea, Map<String, Comida> comida) {
+		return null;
+	}
+
 	@Override
 	public String toString() {
 		return "[" + this.tipo + "] " + this.getNombre() + ": " + this.getInfoNutricional().toString() + super.toString();

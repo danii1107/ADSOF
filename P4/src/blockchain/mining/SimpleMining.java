@@ -1,13 +1,14 @@
+/**
+ * Represents a simple mining method
+ * 
+ * @author Daniel Birsan daniel.brisan@estudiante.uam.es
+ */
 package src.blockchain.mining;
 
 import src.blockchain.interfaces.IMiningMethod;
 import src.blockchain.wallets.Transaction;
 import src.blockchain.utils.CommonUtils;
 
-/**
- * The SimpleMining class implements the IMiningMethod interface and provides
- * a simple mining method for creating hashes and mining blocks in a blockchain.
- */
 public class SimpleMining implements IMiningMethod {
 	/**
 	 * Creates a hash for the given block using the SHA-256 algorithm.

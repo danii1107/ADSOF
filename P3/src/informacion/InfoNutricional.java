@@ -8,6 +8,8 @@
 package src.informacion;
 
 import static src.informacion.ElementoNutricional.*;
+import src.comida.Comida;
+
 import java.util.*;
 
 public abstract class InfoNutricional {
@@ -59,6 +61,21 @@ public abstract class InfoNutricional {
 	public abstract String getUnidadPeso();
 
 	/**
+	 * Recalcula la información nutricional de un plato
+	 * 
+	 * @param c        ingrediente del que se quiere calcular la información
+	 * @param cantidad cantidad de ingrediente
+	 */
+	public abstract void calcularInfoNutricional(Comida c, Integer cantidad);
+
+	/**
+	 * Recalcula la información nutricional de un menú
+	 * 
+	 * @param comida platos que componen el menú
+	 */
+	public abstract void calcularInfoNutricional(Comida... comida);
+
+	/**
 	 * Devueve la información almacenada
 	 * 
 	 * @return mapa de valores nutricionales con sus valores
@@ -73,6 +90,6 @@ public abstract class InfoNutricional {
 		for (ElementoNutricional elem : ElementoNutricional.values()) {
 			info.append(elem.toString() + ": " + String.format(Locale.US, "%.2f", this.infoNutricional.get(elem)) + " " + elem.getUnidad() + ", ");
 		}
-		return info.toString();
+		return info.toString().substring(0, info.length() - 2) + ".";
 	}
 }

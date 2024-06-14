@@ -102,5 +102,15 @@ public class PlatoTest {
 		assertEquals(plato.getInfoNutricional().getInfoNutricional().get(AZUCARES), 5.0, 0.0);
 		assertEquals(plato.getInfoNutricional().getInfoNutricional().get(FIBRA), 5.0, 0.0);
 		assertEquals(plato.getInfoNutricional().getInfoNutricional().get(SODIO), 5.0, 0.0);
+
+		assertNull(plato.setInfoFichero("PLATO;Pollo con arroz;INGREDIENTE Pollo:1"));
+	}
+
+	@Test
+	public void test_toString() {
+		Plato plato = new Plato("Pollo con arroz");
+		Ingrediente pollo = new Ingrediente("Pollo", TipoIngrediente.CARNE, new InfoNutricionalUnidad(100.0, 20.0, 10.0, 5.0, 5.0, 5.0, 5.0, 5.0));
+		assertFalse(plato.addIngrediente(pollo, 1));
+		assertEquals(plato.toString(), "[Plato] Pollo con arroz: INFORMACION NUTRICIONAL DEL PLATO -> Valor energetico: 100.00 kcal, Hidratos de carbono: 20.00 g, Grasas: 10.00 g, Saturadas: 5.00 g, Proteinas: 5.00 g, Azucares: 5.00 g, Fibra: 5.00 g, Sodio: 5.00 mg.");
 	}
 }

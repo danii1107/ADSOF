@@ -8,6 +8,8 @@
 
 package src.informacion;
 
+import src.comida.Comida;
+
 public class InfoNutricionalUnidad extends InfoNutricional {
 	private static final Integer factor = 1; 
 
@@ -38,6 +40,25 @@ public class InfoNutricionalUnidad extends InfoNutricional {
     public Integer getFactor() {
         return factor;
     }
+
+	/**
+	 * Implementación por defecto por herencia
+	 * @param comida Comida
+	 */
+	@Override
+	public void calcularInfoNutricional(Comida... comida) {
+		return;
+	}
+
+	/**
+	 * Implementación por defecto por herencia
+	 * @param c Comida
+	 * @param cantidad Cantidad de la comida
+	 */
+	@Override
+	public void calcularInfoNutricional(Comida c, Integer cantidad) {
+		return;
+	}
 
 	/**
 	 * Implementación para el formato correcto de la cadena

@@ -1,11 +1,12 @@
+/**
+ * Defines the methods that a message must implement.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
 package src.blockchain.interfaces;
 
 import src.blockchain.components.Node;
 
-/**
- * The IMessage interface represents a message in a blockchain network.
- * It provides methods to get the message content and process the message.
- */
 public interface IMessage {
 	
 	/**

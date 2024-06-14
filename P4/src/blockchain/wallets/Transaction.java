@@ -1,19 +1,34 @@
+/**
+ * Represents a transaction between wallets.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
 package src.blockchain.wallets;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Represents a transaction in a blockchain.
- */
 public class Transaction {
-	private static List<Transaction> transactions = new ArrayList<>();
-	private int id;
 	private static int nextId = 0;
-	private Wallet sender;
-	private Wallet receiver;
-	private int amount;
+	private final int id;
+	private final String receiverKey;
+	private final String senderKey;
+	private final Integer amount;
+	private final Wallet sender;
 	private boolean isConfirmed;
+
+	/**
+	 * Constructs a new Transaction object.
+	 *
+	 * @param sender   the wallet of the sender
+	 * @param receiver the wallet public key of the receiver
+	 * @param amount   the amount of the transaction
+	 */
+	public Transaction(Wallet sender, String receiver, Integer amount) {
+		this.id = nextId++;
+		this.senderKey = sender.getPublicKey();
+		this.receiverKey = receiver;
+		this.amount = amount;
+		this.sender = sender;
+		this.isConfirmed = false;
+	}
 
 	/**
 	 * Constructs a new Transaction object.
@@ -22,38 +37,10 @@ public class Transaction {
 	 * @param receiver the wallet of the receiver
 	 * @param amount   the amount of the transaction
 	 */
-	public Transaction(Wallet sender, Wallet receiver, int amount) {
-		this.id = nextId++;
-		this.sender = sender;
-		this.receiver = receiver;
-		this.amount = amount;
-		this.isConfirmed = false;
-		transactions.add(this);
+	public Transaction(Wallet sender, Wallet receiver, Integer amount) {
+		this(sender, receiver.getPublicKey(), amount);
 	}
-
-	/**
-	 * Retrieves a transaction by its ID.
-	 *
-	 * @param id the ID of the transaction
-	 * @return the transaction with the specified ID, or null if not found
-	 */
-	public static Transaction getTransactionById(int id) {
-		Transaction tr = transactions.stream().filter(transaction -> transaction.getId() == id).findFirst().orElse(null);
-		return tr;
-	}
-
-	/**
-	 * Retrieves a transaction by its message.
-	 *
-	 * @param message the message containing the transaction ID
-	 * @return the transaction with the specified ID, or null if not found
-	 */
-	public static Transaction getTransactionByMessage(String message) {
-		String[] parts = message.split(" ");
-		int id = Integer.parseInt(parts[1].replace("|", ""));
-		return getTransactionById(id);
-	}
-
+	
 	/**
 	 * Gets the ID of the transaction.
 	 *
@@ -64,21 +51,21 @@ public class Transaction {
 	}
 
 	/**
-	 * Gets the wallet of the sender.
+	 * Gets the wallet public key of the sender.
 	 *
-	 * @return the wallet of the sender
+	 * @return the public key of the sender
 	 */
-	public Wallet getSender() {
-		return this.sender;
+	public String getSender() {
+		return this.senderKey;
 	}
 
 	/**
-	 * Gets the wallet of the receiver.
+	 * Gets the wallet public key of the receiver.
 	 *
-	 * @return the wallet of the receiver
+	 * @return the public key of the receiver
 	 */
-	public Wallet getRecipient() {
-		return this.receiver;
+	public String getReceiver() {
+		return this.receiverKey;
 	}
 
 	/**
@@ -86,7 +73,7 @@ public class Transaction {
 	 *
 	 * @return the amount of the transaction
 	 */
-	public int getAmount() {
+	public Integer getAmount() {
 		return this.amount;
 	}
 
@@ -104,5 +91,30 @@ public class Transaction {
 	 */
 	public void confirm() {
 		this.isConfirmed = true;
+	}
+
+	/**
+	 * Returns a concatenation of Tx- and the transaction's id
+	 * 
+	 * @return String with the correct format
+	 */
+	public String getName() {
+		return "Tx-" + this.id;
+	}
+
+	public void applyTransaction(Wallet receiver) {
+		sender.setBalance(sender.getBalance() - this.amount);
+		receiver.setBalance(receiver.getBalance() + this.amount);
+		this.confirm();
+	}
+
+	/**
+	 * Returns a string representation of a transaction
+	 * 
+	 * @return the formatted string
+	 */
+	@Override
+	public String toString() {
+		return "Transaction " + this.id + "| from: " + this.senderKey + ", to: " + this.receiverKey + ", quantity: " + this.amount;
 	}
 }

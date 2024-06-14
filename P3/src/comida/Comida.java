@@ -81,9 +81,7 @@ public abstract class Comida {
 	 * @param linea Cadena que contiene la información necesaria para la instancai
 	 * @return Instancia concreta de comida
 	 */
-	public Comida setInfoFichero(String linea) {
-		return null;
-	}
+	public abstract Comida setInfoFichero(String linea);
 
 	/**
 	 * Método para obtener la instancia a partir de una linea de un fichero
@@ -91,9 +89,7 @@ public abstract class Comida {
 	 * @param comida Mapa con la comida ya instanciada
 	 * @return Instancia concreta de comida
 	 */
-	public Comida setInfoFichero(String linea, Map<String, Comida> comida) {
-		return null;
-	}
+	public abstract Comida setInfoFichero(String linea, Map<String, Comida> comida);
 
 	/**
 	 * Método para añadir y almacenar los alérgenos únicos de un plato, menu o ingrediente

@@ -1,8 +1,10 @@
-package src.blockchain.interfaces;
-
 /**
  * The IConnectable interface represents an object that can connect to other objects in a network.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
  */
+package src.blockchain.interfaces;
+
 public interface IConnectable {
 	
 	/**

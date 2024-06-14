@@ -1,14 +1,17 @@
+/**
+ * Represents a notification for a transaction.
+ * 
+ * @author Daniel Birsan danile.birsan@estudiante.uam.es
+ */
 package src.blockchain.notifications;
 
 import src.blockchain.interfaces.IMessage;
 import src.blockchain.wallets.Transaction;
+import src.blockchain.components.Node;
 
-/**
- * Represents a notification for a transaction.
- * Implements the IMessage interface.
- */
 public class TransactionNotification implements IMessage {
-	private Transaction transaction;
+	private final Transaction transaction;
+	private final String message;
 
 	/**
 	 * Constructs a TransactionNotification object with the given transaction.
@@ -16,7 +19,8 @@ public class TransactionNotification implements IMessage {
 	 * @param transaction the transaction associated with the notification
 	 */
 	public TransactionNotification(Transaction transaction) {
-		this.transaction = transaction;    
+		this.transaction = transaction;
+		this.message = transaction.toString();
 	}
 
 	/**
@@ -24,17 +28,40 @@ public class TransactionNotification implements IMessage {
 	 * 
 	 * @return the message of the notification
 	 */
+	@Override
 	public String getMessage() {
-		return this.toString();
+		return this.message;
 	}
 
 	/**
-	 * Returns a string representation of the TransactionNotification object.
+	 * Processes the notification. If the node is null, the notification comes from a network
+	 * 	and prints the message
 	 * 
-	 * @return a string representation of the TransactionNotification object
+	 * @param n the node that processes the notification
+	 */
+	@Override
+	public void process(Node n) {
+		if (n != null) {
+			IMessage.super.process(n);
+			if (n.checkMining()) {
+				if (n.getTransactions().contains(this.transaction)) {
+					System.out.println("[" + n.fullName() + "] Transaction already confirmed: " + this.transaction.getName());
+					return;
+				}
+				n.mineBlock(this.transaction);
+			}
+		}
+		else
+			System.out.println(this.getMessage());
+	}
+
+	/**
+	 * Overrides the default toString method.
+	 * 
+	 * @return notification message
 	 */
 	@Override
 	public String toString() {
-		return "Transaction " + this.transaction.getId() + "| from: " + this.transaction.getSender().getPublicKey() + ", to: " + this.transaction.getRecipient().getPublicKey() + ", quantity: " + this.transaction.getAmount();
+		return this.message;
 	}
 }

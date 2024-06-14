@@ -31,7 +31,7 @@ public class Plato extends Comida {
      * @param cantidad Cantidad del ingrediente a añadir, en gramos o unidades
      * @return False si el ingrediente no está repetido, true en caso contrario
      */
-    public boolean addIngrediente(Ingrediente ingrediente, int cantidad) {
+    public boolean addIngrediente(Comida ingrediente, int cantidad) {
         if (this.componentes.containsKey(ingrediente)) {
             return true;
         }
@@ -44,7 +44,7 @@ public class Plato extends Comida {
      * @param plato Plato a añadir
      * @return False si el plato no está repetido, true en caso contrario
      */
-    public boolean addPlato(Plato plato) {
+    public boolean addPlato(Comida plato) {
         if (this.componentes.containsKey(plato)) {
             return true;
         }
@@ -62,7 +62,7 @@ public class Plato extends Comida {
         this.componentes.put(c, cantidad);
         this.addAlergenos(c.getAlergenos());
         InfoNutricional info = this.getInfoNutricional();
-        ((InfoNutricionalPlato) info).calcularInfoNutricional(c, cantidad);
+        info.calcularInfoNutricional(c, cantidad);
     }
 
     /**
@@ -114,20 +114,30 @@ public class Plato extends Comida {
 				Integer cantidad = Integer.parseInt(detalleIngrediente[1]);
 				Comida ingrediente = comida.get(nombreIngrediente);
 				if (ingrediente != null) {
-					this.addIngrediente(((Ingrediente) ingrediente), cantidad);
+					this.addIngrediente(ingrediente, cantidad);
 				}
 			} else if (partes[i].startsWith("PLATO ")) {
 				String[] detallePlato = partes[i].split(":");
 				String nombreSubPlato = detallePlato[0].substring("PLATO ".length());
 				Comida subPlato = comida.get(nombreSubPlato);
 				if (subPlato != null) {
-					this.addPlato(((Plato) subPlato));
+					this.addPlato(subPlato);
 				}
 			}
 		}
 	
         return this;
     }
+
+    /**
+	 * Implementación por defecto por herencia
+	 * @param linea Cadena que contiene la información necesaria para la instancai
+	 * @return Instancia del ingrediente
+	 */
+	@Override
+	public Comida setInfoFichero(String linea) {
+		return null;
+	}
 
     @Override
     public String toString() {

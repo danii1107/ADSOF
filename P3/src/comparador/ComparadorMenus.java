@@ -35,7 +35,13 @@ public class ComparadorMenus {
 
 		for (ElementoNutricional e : ElementoNutricional.values()) {
 			List<Menu> aux = new ArrayList<>(this.menus);
-			aux.sort(Comparator.comparingDouble(m -> m.getInfoNutricional().getInfoNutricional().get(e)));
+			for (int i = 0; i < aux.size() - 1; i++) {
+                for (int j = 0; j < aux.size() - 1 - i; j++) {
+                    if (aux.get(j).getInfoNutricional().getInfoNutricional().get(e) > aux.get(j + 1).getInfoNutricional().getInfoNutricional().get(e)) {
+                        Collections.swap(aux, j, j + 1);
+                    }
+                }
+            }
 			ordenados.put(e, aux);
 		}
 
@@ -49,7 +55,13 @@ public class ComparadorMenus {
 	public List<Menu> ordenaCalorias() {
 		List<Menu> ordenados = new ArrayList<>(this.menus);
 
-		ordenados.sort(Comparator.comparingDouble(m -> m.getInfoNutricional().getInfoNutricional().get(CALORIAS)));
+		for (int i = 0; i < ordenados.size() - 1; i++) {
+			for (int j = 0; j < ordenados.size() - 1 - i; j++) {
+				if (ordenados.get(j).getInfoNutricional().getInfoNutricional().get(CALORIAS) > ordenados.get(j + 1).getInfoNutricional().getInfoNutricional().get(CALORIAS)) {
+					Collections.swap(ordenados, j, j + 1);
+				}
+			}
+		}
 	
 		return ordenados;
 	}

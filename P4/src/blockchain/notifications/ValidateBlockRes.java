@@ -1,46 +1,58 @@
-package src.blockchain.notifications;
-
-import src.blockchain.interfaces.IMessage;
-
 /**
  * Represents a response message for validating a block.
- * Implements the IMessage interface.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
  */
-public class ValidateBlockRes implements IMessage {
-	private long blockId;
-	private String sourceId;
+
+package src.blockchain.notifications;
+
+import src.blockchain.components.MiningNode;
+import src.blockchain.components.Node;
+import src.blockchain.mining.Block;
+
+public class ValidateBlockRes extends ValidateBlockRq {
 	private Boolean result;
 
 	/**
 	 * Constructs a ValidateBlockRes object with the specified block ID, source ID, and result.
 	 *
-	 * @param blockId   the ID of the block being validated
-	 * @param sourceId  the ID of the source of the validation request
+	 * @param block     the block being validated
+	 * @param miner     the miner that requested the validation
 	 * @param result    the result of the block validation (true if valid, false otherwise)
 	 */
-	public ValidateBlockRes(long blockId, String sourceId, Boolean result) {
-		this.sourceId = sourceId;
-		this.blockId = blockId;
+	public ValidateBlockRes(Block block, MiningNode miner, Boolean result) {
+		super(block, miner);
 		this.result = result;
+		this.message = this.toString();
 	}
 
 	/**
-	 * Gets the message content of the ValidateBlockRes object.
-	 *
-	 * @return the message content as a string
+	 * Processes the notification. If the node is null, the notification comes from a network
+	 * 	and prints the message
+	 * 
+	 * @param n the node that processes the notification
 	 */
 	@Override
-	public String getMessage() {
-		return this.toString();
+	public void process(Node n) {
+		if (n != null) {
+			System.out.println("[" + n.fullName() + "]" +
+					" Received task: " + this.getMessage());
+			if (this.getMessage().contains("true")) {
+				n.commitTransaction(this.block.geTransaction(), this.miner);
+				this.block.setValidated(true);
+			}
+		}
+		else
+			System.out.println("ValidateBlockRes");
 	}
 
 	/**
-	 * Converts the ValidateBlockRes object to a string representation.
-	 *
-	 * @return a string representation of the ValidateBlockRes object
+	 * Returns the formatted data for a validation response
+	 * 
+	 * @return String with the correct format
 	 */
 	@Override
 	public String toString() {
-		return "ValidateBlockRes: <b:" + this.blockId + ", res:" + this.result + ", src:" + this.sourceId + ">";
+		return "ValidateBlockRes: <b:" + this.block.getId() + ", res: " + this.result + ", src:" + String.format("%03d", this.miner.getId()) + ">";
 	}
 }

@@ -1,22 +1,21 @@
-package src.blockchain.exceptions.connection;
-
-import src.blockchain.components.AbstractConnectable;
-import src.blockchain.interfaces.IConnectable;
-
 /**
  * This exception is thrown when a connection error occurs in the blockchain network.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
  */
+
+package src.blockchain.exceptions.connection;
+
 public class ConnectionException extends RuntimeException {
-	private IConnectable e;
+	protected Integer id;
 
 	/**
-	 * Constructs a new ConnectionException with the specified IConnectable object.
-	 *
-	 * @param e the IConnectable object that caused the exception
+	 * Constructs a new ConnectionException for the specified 3 digit id.
+	 * 
+	 * @param id the id of the node
 	 */
-	public ConnectionException(IConnectable e) {
-		this.e = e;
-		toString();
+	public ConnectionException(Integer id) {
+		this.id = id;
 	}
 
 	/**
@@ -26,7 +25,6 @@ public class ConnectionException extends RuntimeException {
 	 */
 	@Override
 	public String toString() {
-		String name = ((AbstractConnectable) e).fullName().replace("#", " ").replace("MiningNode", "Node");
-		return "Connection exception: " + name + " is connected to a different network";
+		return "Connection exception: Node " + String.format("%03d", this.id) + " is already connected to the network";
 	}
 }

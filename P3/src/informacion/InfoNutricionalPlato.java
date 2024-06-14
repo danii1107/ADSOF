@@ -25,6 +25,7 @@ public class InfoNutricionalPlato extends InfoNutricional {
 	 * @param comida
 	 * @param cantidad
 	 */
+	@Override
 	public void calcularInfoNutricional(Comida comida, Integer cantidad) {
 		Map<ElementoNutricional, Double> infoComida = comida.getInfoNutricional().getInfoNutricional();
 		Map<ElementoNutricional, Double> infoPlato = super.getInfoNutricional();
@@ -35,6 +36,15 @@ public class InfoNutricionalPlato extends InfoNutricional {
 			Double nuevoValor =  antiguoValor + entry.getValue() * cantidad / factor;
 			infoPlato.put(entry.getKey(), nuevoValor);
 		}
+	}
+
+	/**
+	 * Implementación por defecto por herencia
+	 * @param comida Comida
+	 */
+	@Override
+	public void calcularInfoNutricional(Comida... comida) {
+		return;
 	}
 
 	/**

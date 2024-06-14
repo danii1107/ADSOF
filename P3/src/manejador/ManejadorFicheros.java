@@ -79,7 +79,7 @@ public class ManejadorFicheros {
 	 * @param nombreFichero Path del fichero con los datos
 	 * @return Conjunto con las líneas leídas del fichero
 	 */
-	private static Set<String> cargarInformacionExistente(String nombreFichero) {
+	public static Set<String> cargarInformacionExistente(String nombreFichero) {
 		Set<String> infoExistente = new HashSet<>();
 		try {
 			List<String> lineasExistentes = Files.readAllLines(Paths.get(nombreFichero));

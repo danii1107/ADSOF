@@ -17,7 +17,7 @@ public class TesterMainExercise2 extends TesterMainExercise1 {
 			this.network.connect(this.miningNode2); // cannot connect: miningNode in a subnet
 		} catch (DuplicateConnectionException e) {
 			System.err.println(e);
-		}
+		} 
 	}
 
 	public void createTransactions() {

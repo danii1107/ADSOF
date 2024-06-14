@@ -1,27 +1,31 @@
+/**
+ * This exception is thrown when a transaction fails, f.i., when the amount is negative.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
+
 package src.blockchain.exceptions.transaction;
 
-import src.blockchain.wallets.Wallet;
 
-/**
- * This exception is thrown when a negative transfer attempt is made in a transaction.
- */
 public class TransactionException extends RuntimeException {
-	private Wallet wallet;
-	private Wallet receiver;
-	private int amount;
+	private String e;
+	private String sender;
+	private String receiver;
+	private Integer amount;
 
 	/**
 	 * Constructs a new TransactionException with the specified wallet, receiver, and amount.
 	 *
-	 * @param wallet   the wallet from which the transfer is attempted
-	 * @param receiver the wallet to which the transfer is attempted
-	 * @param amount   the amount of the transfer
+	 * @param e the related exception
+	 * @param sender the public key of the sender
+	 * @param receiver the public key of the receiver
+	 * @param amount the amount of the transaction
 	 */
-	public TransactionException(Wallet wallet, Wallet receiver, int amount) {
-		this.wallet = wallet;
+	public TransactionException(String e, String sender, String receiver, Integer amount) {
+		this.e = e;
+		this.sender = sender;
 		this.receiver = receiver;
 		this.amount = amount;
-		toString();
 	}
 
 	/**
@@ -31,6 +35,6 @@ public class TransactionException extends RuntimeException {
 	 */
 	@Override
 	public String toString() {
-		return "Negative transfer attempt: source: " + this.wallet.getPublicKey() + ", receiver: " + receiver.getPublicKey() + ", amount: " + amount;
+		return this.e + "source: " + this.sender + ", receiver: " + this.receiver + ", amount: " + this.amount;
 	}
 }

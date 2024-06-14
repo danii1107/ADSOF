@@ -23,6 +23,7 @@ public class InfoNutricionalMenu extends InfoNutricional {
 	 * Recalcula la info nutricional, se invoca cuando se instancia el menu con los platos
 	 * @param comida Platos que componen el menu
 	 */
+	@Override
 	public void calcularInfoNutricional(Comida... comida) {
 		Arrays.asList(comida).forEach(p -> {
 			Map<ElementoNutricional, Double> infoComida = p.getInfoNutricional().getInfoNutricional();
@@ -34,6 +35,16 @@ public class InfoNutricionalMenu extends InfoNutricional {
 				infoMenu.put(entry.getKey(), nuevoValor);
 			}
 		});
+	}
+
+	/**
+	 * Implementación por defecto por herencia
+	 * @param c Comida
+	 * @param cantidad Cantidad de la comida
+	 */
+	@Override
+	public void calcularInfoNutricional(Comida c, Integer cantidad) {
+		return;
 	}
 
 	/**

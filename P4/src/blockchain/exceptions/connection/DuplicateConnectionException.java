@@ -1,22 +1,19 @@
-package src.blockchain.exceptions.connection;
-
-import src.blockchain.interfaces.IConnectable;
-import src.blockchain.components.AbstractConnectable;
-
 /**
  * Exception thrown when a duplicate connection is detected.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
  */
-public class DuplicateConnectionException extends RuntimeException {
-	private IConnectable e;
 
+package src.blockchain.exceptions.connection;
+
+public class DuplicateConnectionException extends ConnectionException {
 	/**
-	 * Constructs a new DuplicateConnectionException with the specified IConnectable object.
+	 * Constructs a new DuplicateConnectionException for the specified 3 digit id.
 	 * 
-	 * @param e the IConnectable object that caused the exception
+	 * @param id the id of the node
 	 */
-	public DuplicateConnectionException(IConnectable e) {
-		this.e = e;
-		toString();
+	public DuplicateConnectionException(Integer id) {
+		super(id);
 	}
 
 	/**
@@ -26,7 +23,6 @@ public class DuplicateConnectionException extends RuntimeException {
 	 */
 	@Override
 	public String toString() {
-		String name = ((AbstractConnectable) e).fullName().replace("#", " ").replace("MiningNode", "Node");
-		return "Connection exception: " + name + " is connected to a different network";
+		return "Connection exception: Node " + String.format("%03d", this.id) + " is connected to a different network";
 	}
 }

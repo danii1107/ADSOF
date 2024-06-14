@@ -1,43 +1,30 @@
-package src.blockchain.wallets;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Represents a wallet in a blockchain system.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
  */
+package src.blockchain.wallets;
+
+import src.blockchain.utils.CommonUtils;
+
 public class Wallet {
-	private static List<Wallet> wallets = new ArrayList<>();
 	private String owner;
-	private String key;
-	private int balance;
+	private String publicKey;
+	private String privateKey;
+	private Integer balance;
 
 	/**
 	 * Constructs a new Wallet object with the specified owner, key, and balance.
 	 *
 	 * @param owner   the owner of the wallet
-	 * @param key     the public key associated with the wallet
+	 * @param key     the public key associated to the wallet
 	 * @param balance the balance of the wallet
 	 */
-	public Wallet(String owner, String key, int balance) {
+	public Wallet(String owner, String key, Integer balance) {
 		this.owner = owner;
-		this.key = key;
+		this.publicKey = key;
 		this.balance = balance;
-		wallets.add(this);
-	}
-
-	/**
-	 * Retrieves a wallet object based on the provided public key.
-	 *
-	 * @param key the public key of the wallet to retrieve
-	 * @return the wallet object with the specified public key, or null if not found
-	 */
-	public static Wallet getWalletByKey(String key) {
-		Wallet wallet = wallets.stream().filter(w -> w.getPublicKey().equals(key)).findFirst().orElse(null);
-		if (wallet != null) {
-			return wallet;
-		}
-		return null;
+		this.privateKey = CommonUtils.sha1(key);
 	}
 
 	/**
@@ -50,12 +37,12 @@ public class Wallet {
 	}
 
 	/**
-	 * Returns the public key associated with the wallet.
+	 * Returns the public key associated to the wallet.
 	 *
 	 * @return the public key of the wallet
 	 */
 	public String getPublicKey() {
-		return key;
+		return this.publicKey;
 	}
 
 	/**
@@ -63,8 +50,8 @@ public class Wallet {
 	 *
 	 * @return the balance of the wallet
 	 */
-	public int getBalance() {
-		return balance;
+	public Integer getBalance() {
+		return this.balance;
 	}
 
 	/**
@@ -72,7 +59,26 @@ public class Wallet {
 	 *
 	 * @param balance the new balance of the wallet
 	 */
-	public void setBalance(int balance) {
+	public void setBalance(Integer balance) {
 		this.balance = balance;
+	}
+
+	/**
+	 * Returns the private key associated to the wallet.
+	 *
+	 * @return the private key of the wallet
+	 */
+	public String getPrivateKey() {
+		return this.privateKey;
+	}
+
+	/**
+	 * Returns a string representation of a waller
+	 * 
+	 * @return the formatted string
+	 */
+	@Override
+	public String toString() {
+		return "u: " + this.owner + ", PK: " + this.publicKey + ", balance: " + this.balance;
 	}
 }
