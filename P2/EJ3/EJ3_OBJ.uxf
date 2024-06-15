@@ -1,0 +1,82 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>280</x><y>380</y><w>140</w><h>150</h></coordinates><panel_attributes>e : Enemigo
+--
+vida: 100
+fuerza: 5
+velocidad: 2
+posicionX: 0
+posicionY:0
+gritoGuerra:"A luchar"
+radio: 10
+maquina: maquina</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>410</y><w>380</w><h>90</h></coordinates><panel_attributes>maquina : MaquinaEstados
+--
+enemigo: e
+estadoActual: EnReposo
+estados: [EnReposo, Ataque, Huida]
+transiciones: [EnReposo-Ataque, Ataque-Huida, Huida-EnReposo]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>600</y><w>130</w><h>90</h></coordinates><panel_attributes>EnReposo : Estado
+--
+multiplicador: 0
+atacar: false
+accion: null</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>690</x><y>600</y><w>130</w><h>90</h></coordinates><panel_attributes>Ataque : Estado
+--
+multiplicador: 2
+atacar: true
+direccion: null
+accion: ACERCAR</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>600</y><w>130</w><h>90</h></coordinates><panel_attributes>Huida : Estado
+--
+multiplicador: 0
+atacar: false
+direccion: null
+accion: ALEJAR</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>750</y><w>130</w><h>50</h></coordinates><panel_attributes>dir : Direccion
+--
+QUIETO</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>690</x><y>750</y><w>130</w><h>50</h></coordinates><panel_attributes>a1 : Accion
+--
+ACERCAR
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>750</y><w>130</w><h>50</h></coordinates><panel_attributes>a2 : Accion
+--
+ALEJAR
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>100</y><w>210</w><h>70</h></coordinates><panel_attributes>c1 : Condicion
+--
+PERSONAJES_MAYORIGUAL
+valor: 1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>220</y><w>210</w><h>70</h></coordinates><panel_attributes>EnReposo-Ataque : Transicion
+--
+estadoOrigen: EnReposo
+estadoDestino: Ataque
+condicion: c1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>100</y><w>210</w><h>70</h></coordinates><panel_attributes>c3 : Condicion
+--
+PERSONAJES_MENOR
+valor: 1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>220</y><w>210</w><h>70</h></coordinates><panel_attributes>Huida-EnReposo : Transicion
+--
+estadoOrigen: Huida
+estadoDestino: EnReposo
+condicionj: c3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>100</y><w>210</w><h>70</h></coordinates><panel_attributes>c2 : Ataque-Huida
+--
+VIDA_MENOR
+valor: 50</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>220</y><w>210</w><h>70</h></coordinates><panel_attributes>Ataque-Huida : Transicion
+--
+estadoOrigen: Ataque
+estadoDestino: Huida
+condicion: c2</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>570</x><y>680</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+- direccion</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>680</y><w>70</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+- accion</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>920</x><y>680</y><w>70</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+- accion</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>410</x><y>410</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+- maquina</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>410</x><y>460</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+- enemigo</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>490</y><w>80</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+- estados</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>550</y><w>390</w><h>70</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;50;10;10;370;10;370;50</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>160</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;-
+- condicion</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>970</x><y>160</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;-
+- condicion</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>160</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;-
+- condicion</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>280</y><w>100</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+- transiciones</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>280</y><w>500</w><h>70</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;50;480;50;480;10</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>250</y><w>220</w><h>430</h></coordinates><panel_attributes>lt=&lt;-
+m1=- estadoOrigen</panel_attributes><additional_attributes>10;400;200;400;200;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>250</y><w>310</w><h>420</h></coordinates><panel_attributes>lt=&lt;-
+
+
+
+
+
+
+
+- estadoOrigen</panel_attributes><additional_attributes>290;400;10;400;10;10;190;10</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>640</y><w>740</w><h>220</h></coordinates><panel_attributes>lt=-
+- estadoDestino</panel_attributes><additional_attributes>720;10;720;200;10;200;10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>640</y><w>490</w><h>260</h></coordinates><panel_attributes>lt=&lt;-
+-estadoDestino</panel_attributes><additional_attributes>470;10;450;10;450;240;10;240;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>800</x><y>280</y><w>290</w><h>390</h></coordinates><panel_attributes>lt=&lt;-
+m2=- estadoOrigen</panel_attributes><additional_attributes>20;370;40;370;40;260;270;260;270;40;10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>530</y><w>180</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
+-estadoDestino</panel_attributes><additional_attributes>10;90;80;90;80;10</additional_attributes></element></diagram>
