@@ -1,10 +1,13 @@
+package formatters;
 /**
+* Clase que representa un artículo apa
 *
 * @author Daniel Birsan daniel.birsan@estudiante.uam.es
-* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
-*
 */
 import java.util.List;
+
+import articles.Article;
+import articles.Author;
 
 public class APAArticleFormatter extends ArticleFormatter {
 	/**

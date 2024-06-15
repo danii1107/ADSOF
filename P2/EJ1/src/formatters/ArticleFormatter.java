@@ -1,10 +1,13 @@
+package formatters;
 /**
+* Clase que representa un formato de artículos
 *
 * @author Daniel Birsan daniel.birsan@estudiante.uam.es
-* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
-*
 */
 import java.util.List;
+
+import articles.Article;
+import articles.Author;
 
 public abstract class ArticleFormatter {
 	protected String name;
@@ -20,6 +23,10 @@ public abstract class ArticleFormatter {
 		this.name = formatterName;
 	}
 	
+	/**
+	 * Devuelve el nombre del formateador.
+	 * @return Nombre del formateador.
+	 */
 	public String getName() {
 		return this.name;
 	}

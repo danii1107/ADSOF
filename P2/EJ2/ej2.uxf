@@ -1,0 +1,172 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>Space for diagram </help_text><element><id>UMLClass</id><coordinates><x>657</x><y>378</y><w>225</w><h>72</h></coordinates><panel_attributes>Autor
+--
+- nif: String
+- comision: double
+- pseudonimo: String
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>369</x><y>378</y><w>243</w><h>72</h></coordinates><panel_attributes>Lector
+--
+- puntos: int
+--
++ getAdeudoMensual(): double
++ getCompras(): Leible[*]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>459</x><y>153</y><w>297</w><h>108</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+/Usuario/
+--
+- nextId: static int
+- id: int
+- nombre: String
+- usuario: String
+- contraseña: String
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>252</y><w>108</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;100;100;10;100;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>603</x><y>252</y><w>135</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100;130;100;130;140</additional_attributes></element><element><id>UMLClass</id><coordinates><x>909</x><y>693</y><w>207</w><h>36</h></coordinates><panel_attributes>Libro
+--
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>72</x><y>351</y><w>198</w><h>144</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Plan
+--
++ BASICO(0.0, 0.0)
++ ESTANDAR(9.99, 0.5)
++ PREMIUM(19.99, 1.0)
+--
+- tarifa: final double
+- descuento: final double
+--
++getDescuento(): double
++getTarifa(): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>261</x><y>405</y><w>126</w><h>45</h></coordinates><panel_attributes>lt=-&gt;
+m2=1
+- plan</panel_attributes><additional_attributes>120;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1278</x><y>657</y><w>207</w><h>135</h></coordinates><panel_attributes>Saga
+--
+- descuento: double
+--
++ getPrecio(): double
++ getAnio(): int
++ getGeneros(): Genero[1..*]
++ getPremios(): String
++ getPaginas(): int 
++ getPuntos(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1467</x><y>405</y><w>162</w><h>90</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Genero
+--
++ NOVELA_NARRATIVA
++ ENSAYO
++ NOVELA_GRAFICA
+--
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1620</x><y>108</y><w>225</w><h>117</h></coordinates><panel_attributes>Acto
+--
+- fecha: Date
+- precio: double
+- descuento: double
+- puntos: int
+- descripción: String
+--
++ calcularPrecio(puntosLector: int): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1035</x><y>315</y><w>297</w><h>252</h></coordinates><panel_attributes>/Leible/
+--
+- nextId: static int
+- id: int
+- titulo: String
+- precio: double
+- anio: int
+- paginas: int
+- valoracion: double
+- premios: String[0..1]
+- puntos: int
+--
++ getPrecio(): double
++ getAnio(): int
++ getGeneros(): Genero[1..*]
++ getAutores(): Autor[1..*]
++ getPremios(): String
++ getPaginas(): int 
++ getPuntos(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>999</x><y>558</y><w>207</w><h>153</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>210;10;210;70;10;70;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>1179</x><y>558</y><w>225</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70;230;70;230;110</additional_attributes></element><element><id>Relation</id><coordinates><x>1107</x><y>693</y><w>189</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=*
+m1=*
+- libros</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>864</x><y>180</y><w>207</w><h>72</h></coordinates><panel_attributes>TarjetaCredito
+--
+-numero: String
+- cvv: int
+- fechaCaducidad: Date  
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1368</x><y>117</y><w>198</w><h>99</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+tipoActo
+--
++ LECTURA_ABIERTO
++ FIRMA_LIBROS
++ ENCUENTRO_VIRTUAL
++ ESCRITURA_CREATIVA</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1557</x><y>153</y><w>81</w><h>45</h></coordinates><panel_attributes>lt=-&gt;
+m2=1
+- tipo</panel_attributes><additional_attributes>70;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>441</y><w>288</w><h>81</h></coordinates><panel_attributes>lt=&lt;-&gt;
+m1=*
+m2=*
+- obras
+- autores</panel_attributes><additional_attributes>10;10;10;60;300;60</additional_attributes></element><element><id>Relation</id><coordinates><x>747</x><y>198</y><w>135</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=*
+- tarjetas</panel_attributes><additional_attributes>10;20;130;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>0</y><w>423</w><h>135</h></coordinates><panel_attributes>&lt;&lt;Singleton&gt;&gt;
+Biblioteca
+--
+- aplicacion: Biblioteca
+--
++ getInstance(): Biblioteca
++ login(usuario: String, contraseña: String): Usuario
++ registrar(usuario: String, contraseña: String, nombre: String,
+										tarjetas: TarjetaCredito[1..*], nif: String[0..1], pseudonimo: nif: String[0..1], 
+										comison: Double[0..1], libros[0..*]): Usuario</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>594</x><y>72</y><w>360</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=*
+- usuarios</panel_attributes><additional_attributes>380;20;10;20;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1143</x><y>126</y><w>63</w><h>207</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=*
+- leibles</panel_attributes><additional_attributes>10;10;10;210</additional_attributes></element><element><id>Relation</id><coordinates><x>1350</x><y>45</y><w>405</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=*
+- actos
+</panel_attributes><additional_attributes>10;20;420;20;420;70</additional_attributes></element><element><id>Relation</id><coordinates><x>396</x><y>441</y><w>27</w><h>270</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;280</additional_attributes></element><element><id>UMLNote</id><coordinates><x>108</x><y>594</y><w>126</w><h>90</h></coordinates><panel_attributes>getTarifa() {
+	return this.tarifa;
+}
+getDescuento() {
+	return this.descuento;
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>162</x><y>486</y><w>27</w><h>126</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>UMLNote</id><coordinates><x>315</x><y>693</y><w>351</w><h>153</h></coordinates><panel_attributes>getAdeudoMensual (){
+	double adeudo = this.plan.getTarifa();
+	for (Leible l : this.compras) {
+		adeudo += (l.getPrecio() - this.plan.getDescuento() * l.getPrecio());
+	}
+	for (Acto a : this.actosAsistidos) {
+		adeudo += a.calcularPrecio(this.puntos);
+	}
+	return adeudo;
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>801</x><y>567</y><w>126</w><h>63</h></coordinates><panel_attributes>getPrecio() {
+   return this.precio;
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>918</x><y>558</y><w>171</w><h>54</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>170;10;170;40;10;40</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1458</x><y>810</y><w>225</w><h>117</h></coordinates><panel_attributes>@Override
+getPrecio() {
+	double precio = 0.0;
+	for (Libro l : this.libros) {
+		precio += l.getPrice();
+	}
+	return precio;
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1476</x><y>711</y><w>108</w><h>117</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;100;10;100;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>189</y><w>414</w><h>108</h></coordinates><panel_attributes>&lt;&lt;FactoryMethod&gt;&gt;
+&lt;&lt;ConreteCreator&gt;&gt;
+/UsuarioFactory/
+--
+--
++ registrar(usuario: String, contraseña: String, nombre: String,
+										tarjetas: TarjetaCredito[1..*], nif: String[0..1], pseudonimo: nif: String[0..1], 
+										comison: Double[0..1], libros[0..*]): Usuario)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>36</y><w>765</w><h>171</h></coordinates><panel_attributes>lt=&lt;..
+factoryMethod</panel_attributes><additional_attributes>10;170;10;20;830;20</additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>288</y><w>306</w><h>108</h></coordinates><panel_attributes>lt=&lt;..
+
+&lt;&lt;instancia&gt;&gt;</panel_attributes><additional_attributes>320;100;320;30;10;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>288</y><w>585</w><h>108</h></coordinates><panel_attributes>lt=&lt;..</panel_attributes><additional_attributes>630;100;630;30;10;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>873</x><y>216</y><w>792</w><h>225</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+- autorVinculado</panel_attributes><additional_attributes>10;220;80;220;80;70;860;70;860;10</additional_attributes></element><element><id>Relation</id><coordinates><x>468</x><y>216</y><w>1260</w><h>738</h></coordinates><panel_attributes>lt=-&gt;
+m2=*
+- actosAsistidos</panel_attributes><additional_attributes>10;260;10;410;310;410;310;800;1370;800;1370;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1323</x><y>432</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=&lt;-&gt;
+m2=*
+m1=*
+- generos
+- elementos</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>441</y><w>531</w><h>126</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+- compras</panel_attributes><additional_attributes>570;110;10;110;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1719</x><y>297</y><w>198</w><h>108</h></coordinates><panel_attributes>calcularPrecio(puntosLector: int) {
+	precio = this.precio;	
+	if (this.puntos &lt;= puntosLector) {
+		precio *= this.descuento/100;
+	}
+	return precio; 
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1791</x><y>216</y><w>27</w><h>99</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1305</x><y>126</y><w>261</w><h>297</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=*
+- generos</panel_attributes><additional_attributes>10;10;10;140;260;140;260;310</additional_attributes></element></diagram>

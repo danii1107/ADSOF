@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"APAArticleFormatter"},{"p":"<Unnamed>","l":"Article"},{"p":"<Unnamed>","l":"ArticleFormatter"},{"p":"<Unnamed>","l":"Author"},{"p":"<Unnamed>","l":"IEEEArticleFormatter"},{"p":"<Unnamed>","l":"Main"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"formatters","l":"APAArticleFormatter"},{"p":"articles","l":"Article"},{"p":"formatters","l":"ArticleFormatter"},{"p":"articles","l":"Author"},{"p":"formatters","l":"IEEEArticleFormatter"},{"p":"main","l":"Main"}]

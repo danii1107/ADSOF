@@ -1,8 +1,8 @@
+package articles;
 /**
+* Clase que representa un autor
 *
 * @author Daniel Birsan daniel.birsan@estudiante.uam.es
-* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
-*
 */
 public class Author {
 	private String lastName;
@@ -18,10 +18,18 @@ public class Author {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * Devuelve el apellido del autor.
+	 * @return Apellido del autor.
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 	
+	/**
+	 * Devuelve el nombre del autor.
+	 * @return Nombre del autor.
+	 */
 	public String getName() {
 		return name;
 	}

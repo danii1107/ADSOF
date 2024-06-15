@@ -1,11 +1,16 @@
+package main;
 /**
 * Esta aplicación calcula las longitudes de los parámetros
 *
 * @author Daniel Birsan daniel.birsan@estudiante.uam.es
-* @author Juan José Martínez Domínguez juanjose.martinezd@estudiante.uam.es
-*
 */
 import java.util.List;
+
+import articles.Article;
+import articles.Author;
+import formatters.APAArticleFormatter;
+import formatters.ArticleFormatter;
+import formatters.IEEEArticleFormatter;
 
 public class Main {
 
