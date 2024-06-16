@@ -1,6 +1,5 @@
 /**
  * Represents a simple validation method for blocks.
- * 
  * @uthor Daniel Birsan daniel.birsan@estudiante.uam.es
  */
 package src.blockchain.mining;
@@ -8,7 +7,7 @@ package src.blockchain.mining;
 import src.blockchain.interfaces.IValidateMethod;
 import src.blockchain.interfaces.IMiningMethod;
 
-public class SimpleValidate implements IValidateMethod {
+public class NewValidate implements IValidateMethod {
     /**
      * Validates a block using a given mining method.
      *
@@ -19,6 +18,7 @@ public class SimpleValidate implements IValidateMethod {
     @Override
     public boolean validate(IMiningMethod miningMethod, Block block) {
         String recalculatedHash = miningMethod.createHash(block);
-        return recalculatedHash.equals(block.getHash());
+        return recalculatedHash.startsWith("4202ORUE") && block.getHash().substring(7).equals(recalculatedHash.substring(7));
     }
 }
+

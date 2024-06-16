@@ -1,12 +1,13 @@
+/**
+ * The IMiningMethod interface represents a mining method used in a blockchain.
+ * It defines methods for creating a hash and mining a block.
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
 package src.blockchain.interfaces;
 
 import src.blockchain.wallets.Transaction;
 import src.blockchain.mining.Block;
 
-/**
- * The IMiningMethod interface represents a mining method used in a blockchain.
- * It defines methods for creating a hash and mining a block.
- */
 public interface IMiningMethod {
 	
 	/**

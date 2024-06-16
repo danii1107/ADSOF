@@ -1,4 +1,10 @@
+/**
+ * Class CommonUtils
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
 package src.blockchain.utils;
+
 import java.io.UnsupportedEncodingException;
 /* import java.nio.ByteBuffer;
 import java.nio.ByteOrder; */

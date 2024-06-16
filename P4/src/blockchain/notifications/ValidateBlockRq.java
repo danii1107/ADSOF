@@ -1,3 +1,8 @@
+/**
+ * Represents a response message for validating a block.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
 package src.blockchain.notifications;
 
 import src.blockchain.interfaces.IMessage;
@@ -5,9 +10,6 @@ import src.blockchain.mining.Block;
 import src.blockchain.components.MiningNode;
 import src.blockchain.components.Node;
 
-/**
- * Represents a request to validate a block in the blockchain.
- */
 public class ValidateBlockRq implements IMessage {
 	protected MiningNode miner;
 	protected String message;

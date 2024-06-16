@@ -7,6 +7,8 @@ package src.blockchain.components;
 
 import src.blockchain.notifications.ValidateBlockRes;
 import src.blockchain.notifications.ValidateBlockRq;
+import src.blockchain.interfaces.IValidateMethod;
+import src.blockchain.interfaces.IMiningMethod;
 import src.blockchain.wallets.Transaction;
 import src.blockchain.wallets.Wallet;
 import src.blockchain.mining.*;
@@ -15,8 +17,8 @@ import java.util.*;
 
 public class MiningNode extends Node {
 	private long computationalCapacity;
-	private SimpleMining miningMethod = null;
-	private SimpleValidate validationMethod = null;
+	private IMiningMethod miningMethod = null;
+	private IValidateMethod validationMethod = null;
 	private List<Block> blocks = new ArrayList<>();
 
 	/**
@@ -40,7 +42,7 @@ public class MiningNode extends Node {
 	 *
 	 * @param miningMethod the mining method to be set
 	 */
-	public void setMiningMethod(SimpleMining miningMethod) {
+	public void setMiningMethod(IMiningMethod miningMethod) {
 		this.miningMethod = miningMethod;
 	}
 
@@ -49,7 +51,7 @@ public class MiningNode extends Node {
 	 *
 	 * @param validationMethod the validation method to be set
 	 */
-	public void setValidationMethod(SimpleValidate validationMethod) {
+	public void setValidationMethod(IValidateMethod validationMethod) {
 		this.validationMethod = validationMethod;
 	}
 

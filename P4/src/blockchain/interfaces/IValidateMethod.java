@@ -1,10 +1,11 @@
+/**
+ * The IValidateMethod interface represents a method for validating a block in a blockchain.
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es 
+ */
 package src.blockchain.interfaces;
 
 import src.blockchain.mining.Block;
 
-/**
- * The IValidateMethod interface represents a method for validating a block in a blockchain.
- */
 public interface IValidateMethod {
 	/**
 	 * Validates a block using the specified mining method.

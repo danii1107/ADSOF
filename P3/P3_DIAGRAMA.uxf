@@ -1,0 +1,142 @@
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>455</x><y>700</y><w>84</w><h>105</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+TipoIngrediente
+--
++ CEREAL
++ PESCADO
++ FRUTA_VERDURA
++ LEGUMBRE
++ CARNE
++ HUEVO
++ LACTEO</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>595</x><y>168</y><w>98</w><h>133</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+ElementoNutricional
+--
++ CALORIAS
++ CARBOHIDRATOS
++ GRASA_TOTAL
++ GRASA_SATURADA
++ PROTEINA
++ AZUCARES
++ FIBRA
++ SODIO
+--
++ getUnidad(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1085</x><y>329</y><w>84</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Alergeno
+--
++ GLUTEN
++ FRUTOS_SECOS
++ HUEVO
++ LACTOSA</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>714</x><y>308</y><w>280</w><h>133</h></coordinates><panel_attributes>&lt;&lt;Composite&gt;&gt;
+&lt;&lt;Component&gt;&gt;
+Comida
+--
+- nombre: String
+--
++ add(c: Comida, cantidad: Integer): void
++ getChild(): Comida
++ getInfoFichero(): String
++ setInfoFichero(linea: String): Comida
++ setInfoFichero(linea: String, comida: Map&lt;String, Comida&gt;): Comida
++ addAlergenos(alergenos: List&lt;Alergeno&gt;): void
++ addAlergenos(alergenos: Set&lt;Alergeno&gt;): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>378</x><y>532</y><w>217</w><h>105</h></coordinates><panel_attributes>&lt;&lt;Composite&gt;&gt;
+&lt;&lt;Leaf&gt;&gt;
+Ingrediente
+--
+- tipo: String
+--
++ tieneAlergenos(alergenos: Alergeno...): Ingrediente
++ add(c: Comida, cantidad: Integer): void
++ getChild(): Comida
++ getInfoFichero(): String
++ setInfoFichero(linea: String): Comida
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>637</x><y>532</y><w>280</w><h>119</h></coordinates><panel_attributes>&lt;&lt;Composite&gt;&gt;
+&lt;&lt;Composite&gt;&gt;
+Plato
+--
+- componentes: Map&lt;Comida, Integer&gt;
+--
++ addIngrediente(ingrediente: Ingrediente, cantidad: int): boolean
++ addPlato(plato: Plato): boolean
++ add(c: Comida, cantidad: Integer): void
++ getChild(): Comida
++ getInfoFichero(): String
++ setInfoFichero(linea: String, comida: Map&lt;String, Comida&gt;): Comida</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>889</x><y>735</y><w>287</w><h>56</h></coordinates><panel_attributes>ComparadorMenus
+--
+--
++ menusElementoNutricional(): Map&lt;ElementoNutricional, List&lt;Menu&gt;&gt;
++ ordenaCalorias(): List&lt;Menu&gt;
++ tieneAlergenos(): Map&lt;Alergeno, List&lt;Menu&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>252</x><y>196</y><w>217</w><h>70</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+InfoNutricional
+--
+- infoNutricional: Map&lt;ElementoNutricional, Double&gt;
+--
++ getFactor(): Integer
++ getUnidadPeso(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>238</x><y>434</y><w>189</w><h>56</h></coordinates><panel_attributes>InfoNutricionalMenu
+--
+--
++ calcularInfoNutricional(comida: Comida...)
++ getFactor(): Integer
++ getUnidadPeso(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>203</x><y>658</y><w>147</w><h>56</h></coordinates><panel_attributes>InfoNutricionalPeso
+--
+- factor: static final Integer
+--
++ getFactor(): Integer
++ getUnidadPeso(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>203</x><y>539</y><w>147</w><h>56</h></coordinates><panel_attributes>InfoNutricionalUnidad
+--
+- factor: static final Integer
+--
++ getFactor(): Integer
++ getUnidadPeso(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>455</x><y>427</y><w>245</w><h>56</h></coordinates><panel_attributes>InfoNutricionalPlato
+--
+--
++ calcularInfoNutricional(comida: Comida, cantidad: Integer)
++ getFactor(): Integer
++ getUnidadPeso(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>819</x><y>168</y><w>350</w><h>91</h></coordinates><panel_attributes>ManejadorFicheros
+--
+--
++ guardarFichero(nombreFichero: String, menus: List&lt;Menu&gt;): void
++ leerFichero(nombreFichero: String): void
+- cargarInformacionExistente(nombreFichero: String): Set&lt;String&gt;
+- crearIngredientes(lineas: List&lt;String&gt;): Map&lt;String, Comida&gt;
+- crearPlatos(lineas: List&lt;String&gt;, comida: Map&lt;String, Comida&gt;): Map&lt;String, Comida&gt;
+- crearMenus(lineas: List&lt;String&gt;, comida: Map&lt;String, Comida&gt;): List&lt;Menu&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>945</x><y>532</y><w>280</w><h>91</h></coordinates><panel_attributes>Menu
+--
+- nextId: static Integer
+- id: Integer
+--
++ add(c: Comida, cantidad: Integer): void
++ getChild(): Comida
++ getInfoFichero(): String
++ setInfoFichero(linea: String, comida: Map&lt;String, Comida&gt;): Comida</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>553</x><y>770</y><w>315</w><h>91</h></coordinates><panel_attributes>PlanificadorMenu
+--
+- maximos: Map&lt;ElementoNutricional, Double&gt;
+--
++ planificar(caloriasMin: double, caloriasMax: double): Menu
++ conMaximo(elemento: ElementoNutricional, max: Double): PlanificadorMenu
++ sinAlergenos(alergenos: Alergeno...): PlanificadorMenu
+- cumpleMaximos(plato: Plato): Boolean
+- tieneAlergenosExluidos(alergenosPlato: Set&lt;Alergeno&gt;): Boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>777</x><y>434</y><w>21</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>476</x><y>434</y><w>322</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>440;10;440;90;10;90;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>777</x><y>434</y><w>322</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90;440;90;440;140</additional_attributes></element><element><id>Relation</id><coordinates><x>812</x><y>434</y><w>70</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*
+
+
+
+
+- subcomida</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1022</x><y>616</y><w>49</w><h>133</h></coordinates><panel_attributes>lt=-&gt;
+m2=*
+m1=- menus</panel_attributes><additional_attributes>10;170;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>707</x><y>616</y><w>343</w><h>168</h></coordinates><panel_attributes>lt=-&gt;
+m2=*
+m1=- menus</panel_attributes><additional_attributes>10;220;10;110;460;110;460;10</additional_attributes></element><element><id>Relation</id><coordinates><x>987</x><y>357</y><w>112</w><h>28</h></coordinates><panel_attributes>lt=-&gt;
+m2=*
+m1=- alergenos</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>483</x><y>630</y><w>63</w><h>84</h></coordinates><panel_attributes>lt=&lt;-
+m2=- tipoEnum
+m1=0..1</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>462</x><y>231</y><w>147</w><h>21</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>190;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>343</x><y>259</y><w>21</w><h>189</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;250</additional_attributes></element><element><id>Relation</id><coordinates><x>343</x><y>259</y><w>245</w><h>182</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;180;330;180;330;240</additional_attributes></element><element><id>Relation</id><coordinates><x>217</x><y>259</y><w>161</w><h>413</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;190;180;10;180;10;370;210;370;210;530;80;530;80;570</additional_attributes></element><element><id>Relation</id><coordinates><x>217</x><y>259</y><w>147</w><h>294</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;190;180;10;180;10;400</additional_attributes></element><element><id>Relation</id><coordinates><x>392</x><y>259</y><w>336</w><h>91</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+- infoNutricional</panel_attributes><additional_attributes>10;10;10;110;460;110</additional_attributes></element><element><id>Relation</id><coordinates><x>756</x><y>210</y><w>77</w><h>112</h></coordinates><panel_attributes>lt=&lt;..
+&lt;&lt;crea&gt;&gt;</panel_attributes><additional_attributes>10;140;10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>861</x><y>364</y><w>469</w><h>476</h></coordinates><panel_attributes>lt=&lt;-
+- alergenosExcluidos
+m1=*</panel_attributes><additional_attributes>440;10;540;10;540;660;10;660</additional_attributes></element></diagram>

@@ -1,3 +1,8 @@
+/**
+ * Represents the configuration of a block.
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
+ */
 package src.blockchain.utils;
 
 public class BlockConfig {
