@@ -102,6 +102,11 @@ public class Transaction {
 		return "Tx-" + this.id;
 	}
 
+	/**
+	 * Applies the transaction to the wallets.
+	 * 
+	 * @param receiver the wallet that will receive the amount
+	 */
 	public void applyTransaction(Wallet receiver) {
 		sender.setBalance(sender.getBalance() - this.amount);
 		receiver.setBalance(receiver.getBalance() + this.amount);

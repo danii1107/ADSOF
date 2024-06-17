@@ -33,6 +33,10 @@ public class MiningNode extends Node {
 		this.setName("MiningNode");
 	}
 
+	/**
+	 * Gets the computational capacity of the mining node.
+	 * @return the computational capacity of the mining node
+	 */
 	public long getComputationalCapacity() {
 		return this.computationalCapacity;
 	}
@@ -47,12 +51,30 @@ public class MiningNode extends Node {
 	}
 
 	/**
+	 * Gets the mining method of the mining node.
+	 *
+	 * @return the mining method of the mining node
+	 */
+	public IMiningMethod getMiningMethod() {
+		return this.miningMethod;
+	}
+
+	/**
 	 * Sets the validation method for the mining node.
 	 *
 	 * @param validationMethod the validation method to be set
 	 */
 	public void setValidationMethod(IValidateMethod validationMethod) {
 		this.validationMethod = validationMethod;
+	}
+
+	/**
+	 * Gets the validation method of the mining node.
+	 *
+	 * @return the validation method of the mining node
+	 */
+	public IValidateMethod getValidationMethod() {
+		return this.validationMethod;
 	}
 
 	/**

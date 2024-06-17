@@ -45,6 +45,24 @@ public class BlockchainNetwork implements IConnectable {
 	}
 
 	/**
+	 * Gets the list of elements connected to this blockchain network.
+	 * 
+	 * @return the list of elements connected to this blockchain network
+	 */
+	public List<AbstractConnectable> getElements() {
+		return this.elements;
+	}
+
+	/**
+	 * Gets the name of the blockchain network.
+	 * 
+	 * @return the name of the blockchain network
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
 	 * Broadcasts a message to all connected elements in the blockchain network.
 	 *
 	 * @param message the message to broadcast
