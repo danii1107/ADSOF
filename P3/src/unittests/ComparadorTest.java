@@ -34,20 +34,20 @@ public class ComparadorTest {
         menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.CALORIAS, 300.0);
         menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.GRASA_TOTAL, 5.0);
         menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.PROTEINA, 15.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.CARBOHIDRATOS, 25.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.GRASA_SATURADA, 5.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.AZUCARES, 15.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.FIBRA, 100.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.SODIO, 100.0);
+		menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.CARBOHIDRATOS, 25.0);
+		menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.GRASA_SATURADA, 5.0);
+		menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.AZUCARES, 15.0);
+		menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.FIBRA, 100.0);
+		menu2.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.SODIO, 100.0);
 
         menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.CALORIAS, 400.0);
         menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.GRASA_TOTAL, 8.0);
         menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.PROTEINA, 18.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.CARBOHIDRATOS, 20.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.GRASA_SATURADA, 15.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.AZUCARES, 20.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.FIBRA, 25.0);
-		menu1.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.SODIO, 5.0);
+		menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.CARBOHIDRATOS, 20.0);
+		menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.GRASA_SATURADA, 15.0);
+		menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.AZUCARES, 20.0);
+		menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.FIBRA, 25.0);
+		menu3.getInfoNutricional().getInfoNutricional().put(ElementoNutricional.SODIO, 5.0);
 
         ComparadorMenus comparador = new ComparadorMenus(menu1, menu2, menu3);
 

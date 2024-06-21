@@ -4,6 +4,6 @@
  */
 package registrations;
 
-public enum RegistrationState{
+public enum RegistrationState {
 	STARTED, FILLED, VALIDATED, PAYED, FINISHED, REJECTED;
 }

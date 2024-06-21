@@ -1,3 +1,8 @@
+/**
+ * Tester para las trayectorias
+ * 
+ * @author EPS
+ */
 package testers;
 
 import java.util.*;

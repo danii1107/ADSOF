@@ -13,19 +13,18 @@ import src.menus.*;
 import java.util.*;
 
 public class ComparadorTester extends MenusTester {
-    public static void main(String[] args) {
-        ComparadorTester tester = new ComparadorTester();
-        List<Menu> menus = tester.crearMenus();
-
-        ComparadorMenus comparador = new ComparadorMenus(menus.toArray(new Menu[0]));
-
+    /**
+     * Ejecuta el tester, invocando a los métodos de ordenación y printeando el retorno
+     * @param comparador El comparador que contiene los menús y los métodos de ordenado
+     */
+    protected void ejecutar(ComparadorMenus comparador) {
         System.out.println("*********************** Menús ordenados para cada elemento nutricional ***********************");
         for (Map.Entry<ElementoNutricional, List<Menu>> entry : comparador.menusElementoNutricional().entrySet()) {
             System.out.println("**" + entry.getKey().toString().toUpperCase() + "**");
             entry.getValue().forEach(m -> System.out.println(m + "\n"));
         }
 
-        System.out.println("\n*********************** Menús ordenados por calorías ***********************");
+        System.out.println("\n*********************** Menus ordenados por calorías ***********************");
         int i = 1;
         for (Menu menu : comparador.ordenaCalorias()) {
             System.out.println("**" + i + "**");
@@ -38,5 +37,14 @@ public class ComparadorTester extends MenusTester {
             System.out.println("**" + entry.getKey().toString().toUpperCase() + "**\n");
             entry.getValue().forEach(m -> System.out.println(m + "\n"));
         }
+    }
+
+    public static void main(String[] args) {
+        ComparadorTester tester = new ComparadorTester();
+        List<Menu> menus = tester.crearMenus();
+
+        ComparadorMenus comparador = new ComparadorMenus(menus.toArray(new Menu[0]));
+
+        tester.ejecutar(comparador);
     }
 }

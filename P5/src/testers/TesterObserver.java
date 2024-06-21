@@ -1,3 +1,8 @@
+/**
+ * Tester para el patron observer
+ * 
+ * @author EPS
+ */
 package testers;
 
 import static registrations.RegistrationKind.*;

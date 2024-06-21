@@ -1,116 +1,95 @@
 /**
- * ObjectSTateTracker
- * @author Daniel Birsan y Juan José Martínez Domínguez
+ * Clase generica que permite definir, almacenar y gestionar estados
+ * para cualquier objeto
+ * 
+ * @author Daniel Birsan daniel.birsan@estudiante.uam.es
  */
 package states;
 
 import java.util.function.Predicate;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import interfaces.*;
 
-public class ObjectStateTracker<T, S> implements IObserver, Iterable<T> {
-	private List<S> estados = new ArrayList<>();
-	private Map<S, Predicate<T>> expresiones;
-	private S elseState;
-	private Map<S ,List<T>> estadosActuales;
-	private Set<String> noRepes;
-	private Trajectory<T, S> trayectoria;
+public class ObjectStateTracker<T, S extends Comparable<S>> implements IObserver<T>, Iterable<T> {
+	private Map<T, List<Transition<S>>> transiciones = new HashMap<>();
+	private Map<S, Predicate<T>> expresiones = new LinkedHashMap<>();
+	private Map<S, Set<T>> estadosActuales = new LinkedHashMap<>();
 	
 	/**
-	 * Constructor de la clase ObjectStateTracker
-	 * @param estados Estados posibles
+	 * Constructor del tracker, recibe los estados válidos y reserva
+	 * memoria para el mapa que los almacena
+	 * @param estados Estados válidos y posibles
 	 */
 	public ObjectStateTracker(S[] estados) {
-		this.estados = Arrays.asList(estados);
-		this.expresiones = new LinkedHashMap<>();
-		this.elseState = null;
-		this.estadosActuales = new LinkedHashMap<>();
-		for (S s : this.estados) {
-			this.estadosActuales.put(s, new ArrayList<T>());
-		}
-		this.noRepes = new HashSet<>();
-		this.trayectoria = new Trajectory<>(estados);
+		Arrays.asList(estados).forEach(e -> {
+			this.estadosActuales.put(e, new LinkedHashSet<T>());
+		});
 	}
 
 	/**
-	 * Añade una expresión ligada a un estado
-	 * @param estado Estado
+	 * Añade una expresión lambda ligada a un estado, si la expresión evalúa true,
+	 * el objeto está en el estado asignado
+	 * @param estado Estado al que asignar la expresion
 	 * @param expresion Expresión lambda que determina si un objeto está en ese estado
-	 * @return ObjectStateTracker
+	 * @return this para el encadenamiento de invocaciones
 	 */
 	public ObjectStateTracker<T, S> withState(S estado, Predicate<T> expresion) {
-		if (this.estados.size() != 0) {
-			Boolean found = false;
-			for (S s : this.estados) {
-				if (s.equals(estado)) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				throw new IllegalStateException("El estado debe estar en los estados validos.");
-			}
+		if (!this.estadosActuales.keySet().contains(estado)) {
+			throw new IllegalStateException("El estado debe estar en los estados validos.");
 		}
 		this.expresiones.put(estado, expresion);	
 		return this;
 	}
 
 	/**
-	 * Añade un estado por defecto
+	 * Añade un estado por defecto usado por si ninguna expresión evalúa true,
+	 * el estado siempre evalúa true
 	 * @param estado Estado por defecto si ninguna expresión es true
-	 * @return ObjectStateTracker
+	 * @return this para el encadenamiento de invocaciones
 	 */
 	public ObjectStateTracker<T, S> elseState(S estado) {
-		if (this.estados.size() != 0) {
-			Boolean found = false;
-			for (S s : this.estados) {
-				if (s.equals(estado)) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				throw new IllegalStateException("El estado debe estar en los estados validos.");
-			}
-		}
-		this.elseState = estado;
-		return this;
+		return withState(estado, p -> true);
 	}
 
 	/**
 	 * Actualiza los estados comprobando todas las expresiones lambda
 	 */
 	public void updateStates() {
-		Map<S, List<T>> nuevosEstadosActuales = new LinkedHashMap<>();
-		for (S s : this.estados) {
-			nuevosEstadosActuales.put(s, new ArrayList<T>());
-		}
-		for (Map.Entry<S, List<T>> entry : this.estadosActuales.entrySet()) {
-			S estadoAntiguo = entry.getKey();
-			int i = 0;
-			List<T> rLista = entry.getValue();
-			for (T r : rLista) {				
-				S estado = null;
-				for (Map.Entry<S, Predicate<T>> entry2 : this.expresiones.entrySet()) {
-					if (entry2.getValue().test(r)) {
-						estado = entry2.getKey();
-						break;
-					}
-				}
-				if (estado == null)
-					estado = this.elseState;
-				nuevosEstadosActuales.get(estado).add(r);
-				if (!estadoAntiguo.equals(estado)) {
-					this.trayectoria.getTransiciones().get(r).add("(from: " + estadoAntiguo + " to " + estado + " at: " + LocalDateTime.now() + ")");
-					if (i == rLista.size() - 1) {
-						this.trayectoria.ffinal(estado);
-					}
-				}
+		Map<S, Set<T>> aux = new HashMap<>();
+        for (Map.Entry<S, Set<T>> entry : this.estadosActuales.entrySet()) {
+            aux.put(entry.getKey(), new HashSet<>(entry.getValue()));
+        }
+
+		for (Map.Entry<S, Set<T>> entry : aux.entrySet()) {
+			for (T t : entry.getValue()) {
+				this.updateState(t);
 			}
 		}
-		this.estadosActuales = nuevosEstadosActuales;
+	}
+
+	/**
+	 * Actualiza un objeto concreto comprobando cada expresión
+	 * @param t objeto a actualizar
+	 */
+	public void updateState(T t) {
+		S actual = null;
+		for (Map.Entry<S, Set<T>> entry : this.estadosActuales.entrySet()) {
+			if (entry.getValue().contains(t)) {
+				actual = entry.getKey();
+				break;
+			}
+		}
+		for (Map.Entry<S, Predicate<T>> entry2 : this.expresiones.entrySet()) {
+			if (entry2.getValue().test(t)) {
+				this.estadosActuales.get(entry2.getKey()).add(t);
+				if (!actual.equals(entry2.getKey())) {
+					this.estadosActuales.get(actual).remove(t);
+					this.transiciones.get(t).add(new Transition<S>(actual, entry2.getKey()));
+				}
+				break;
+			}
+		}
 	}
 
 	/**
@@ -118,28 +97,20 @@ public class ObjectStateTracker<T, S> implements IObserver, Iterable<T> {
 	 * @param r Objetos que registrar en el sistema
 	 */
 	public void addObjects(T... r) {
-		for (T reg : r) {
-			if (this.noRepes.contains(reg.toString())) {
-				continue;
-			} else {
-				List<T> antiguosIniciales = this.estadosActuales.get(this.estados.get(0)); 
-				antiguosIniciales.add(reg);
-				this.estadosActuales.put(this.estados.get(0), antiguosIniciales);
-				this.trayectoria.addObjects(reg);
-				this.trayectoria.getTransiciones().get(reg).add("(in: " + this.estados.get(0) + " at: " + LocalDateTime.now() + ")");
-				this.trayectoria.inicial(this.estados.get(0));
-				this.noRepes.add(reg.toString());
-			}
-		}
+		S inicial = this.estadosActuales.keySet().iterator().next();
+		Arrays.asList(r).forEach(reg -> {
+			if (this.estadosActuales.get(inicial).add(reg))
+				this.transiciones.put(reg, new ArrayList<Transition<S>>(List.of(new Transition<>(inicial))));
+		});
 	}
 
 	/**
-	 * Devuelve la trayectoria de un objeto
-	 * @param r Objeto
-	 * @return Trayectoria del objeto
+	 * Devuelve la lista de transiciones de estados adjunta al objeto
+	 * @param t el objeto del que se quiere obtener la trayectoria
+	 * @return Lista de trayectorias del objeto
 	 */
-	public Trajectory<T, S> trajectory(T r) {
-		return this.trayectoria.auxToString(r);
+	public List<Transition<S>> trajectory(T t) {
+		return this.transiciones.get(t);
 	}
 
 	@Override
@@ -153,41 +124,14 @@ public class ObjectStateTracker<T, S> implements IObserver, Iterable<T> {
 	 */
 	@Override
 	public Iterator<T> iterator() {
-		return this.trayectoria.getTransiciones().keySet().iterator();
+		return this.transiciones.keySet().iterator();
 	}
 
 	/**
 	 * Método del patrón observer que se ejecuta al recibir una notificación de un objeto observado
 	 */
 	@Override
-	public void update() {
-		Map<S, List<T>> nuevosEstadosActuales = new LinkedHashMap<>();
-		for (S s : this.estados) {
-			nuevosEstadosActuales.put(s, new ArrayList<T>());
-		}
-		for (Map.Entry<S, List<T>> entry : this.estadosActuales.entrySet()) {
-			S estadoAntiguo = entry.getKey();
-			int i = 0;
-			List<T> rLista = entry.getValue();
-			for (T r : rLista) {				
-				S estado = null;
-				for (Map.Entry<S, Predicate<T>> entry2 : this.expresiones.entrySet()) {
-					if (entry2.getValue().test(r)) {
-						estado = entry2.getKey();
-						break;
-					}
-				}
-				if (estado == null)
-					estado = this.elseState;
-				nuevosEstadosActuales.get(estado).add(r);
-				if (!estadoAntiguo.equals(estado)) {
-					this.trayectoria.getTransiciones().get(r).add("(from: " + estadoAntiguo + " to " + estado + " at: " + LocalDateTime.now() + ")");
-					if (i == rLista.size() - 1) {
-						this.trayectoria.ffinal(estado);
-					}
-				}
-			}
-		}
-		this.estadosActuales = nuevosEstadosActuales;
+	public void update(T t) {
+		this.updateState(t);
 	}
 }

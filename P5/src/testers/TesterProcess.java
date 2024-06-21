@@ -1,3 +1,8 @@
+/**
+ * Tester para el PROCESS
+ * 
+ * @author EPS
+ */
 package testers;
 
 import static registrations.RegistrationKind.*;

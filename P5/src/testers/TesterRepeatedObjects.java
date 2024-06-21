@@ -1,3 +1,8 @@
+/**
+ * Tester para los objetis repetidos
+ * 
+ * @author EPS
+ */
 package testers;
 
 import static registrations.RegistrationKind.*;
